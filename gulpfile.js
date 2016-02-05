@@ -407,3 +407,34 @@ gulp.task("watch-framework", function(name, dest){
     dest = dest || '';
     gulp.watch(`framework/src/${dest}/${name}.js`, hst(name, dest))
 });
+
+gulp.task("build-static-js", function() {
+	var src = paths.srcRoot + "assets/pc/static/js/**/*.js";
+	var dest = paths.destRoot + "assets/pc/static/js/";
+	gulp.src(src)
+		.pipe(gulp.dest(dest));
+});
+
+gulp.task("build-project-style", function() {
+	// 构建index.scss
+    exec("gulp build-pcsass", function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+    });  
+});
+
+gulp.task("build-project-static", function() {
+	// 构建index.scss
+    exec("gulp build-static-js", function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+    });  
+});
+
+gulp.task("build-project-html", function() {
+	// 构建index.scss
+    exec("gulp build-template -d --src resources/index.html --dest www/", function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+    });  
+});
