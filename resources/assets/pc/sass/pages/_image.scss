@@ -1,0 +1,25 @@
+@mixin com-zhilizhili-site-components-image() {
+    [page=image] {
+        .test {
+            @include com-zhilizhili-device-desktop-mdpi-for-ie8() {
+                background-color: #26c6da;
+            }
+            @include com-zhilizhili-device-desktop-mdpi() {
+                background-color: #000080;
+            }
+            @include com-zhilizhili-device-desktop-xhdpi() {
+                background-color: #00A000;
+            }
+            @include register-hook("#{&}");
+        }
+    }
+}
+
+@mixin com-zhilizhili-site-components-image-polyfill() {
+    @include use-hook("[page=image] .test") {
+        @include polyfill-advance-set((
+            width: 960 #vw,
+            height: 480 #vw
+        ))
+    }
+}

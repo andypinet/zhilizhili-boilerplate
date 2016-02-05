@@ -1,0 +1,84 @@
+@mixin com-zhilizhili-music-responsive-grid-shim-init($id) {
+    $com-bilibili-responsive-grid-selector: map-deep-set($com-bilibili-responsive-grid-selector, $id, #{&}) !global;
+    & {
+        float: left;
+    }
+}
+
+@mixin com-zhilizhili-music-responsive-grid-shim($id) {
+    $selector: map-deep-get($com-bilibili-responsive-grid-selector, $id);
+    @at-root {
+        #{$com-zhilizhili-rem-html-polyfill-selector} {
+            #{$selector}:nth-child(3n) {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+@mixin com-zhilizhili-site-components-grid() {
+    [page=grid] {
+        .layout.ui-collection.nine-cell {
+            lost-utility: clearfix;
+            > .layout__item {
+                @include com-zhilizhili-music-responsive-grid-shim-init('nine-cell');
+                @include register-hook("#{&}");
+            }
+            @include register-hook("#{&}");
+        }
+        .layout.ui-collection.lost-grid {
+            @lost gutter 0;
+            lost-utility: clearfix;
+            > .layout__item {
+                width: percentage(0.9999999 / 3);
+                lost-column: 1/3;
+                float: left;
+                background-color: #000080;
+            }
+            @include register-hook("#{&}");
+        }
+        .polyfill-grid-container {
+            overflow: hidden;
+            @include register-hook("#{&}");
+        }
+        .layout.ui-collection.polyfill-grid {
+            lost-utility: clearfix;
+            > .layout__item {
+                float: left;
+                background-color: #26c6da;
+                @include register-hook("#{&}");
+            }
+            @include register-hook("#{&}");
+        }
+    }
+}
+
+@mixin com-zhilizhili-site-components-grid-polyfill() {
+    @include use-hook("[page=grid] .layout.ui-collection.nine-cell") {
+        @include polyfill-advance-set((
+            width: 900 #vw
+        ))
+    }
+    @include use-hook("[page=grid] .layout.ui-collection.nine-cell > .layout__item") {
+        @include polyfill-advance-set((
+            width: 300 #vw
+        ))
+    }
+    @include use-hook("[page=grid] .polyfill-grid-container") {
+        @include polyfill-advance-set((
+            width: 920 #vw
+        ))
+    }
+    @include use-hook("[page=grid] .layout.ui-collection.polyfill-grid") {
+        @include polyfill-advance-set((
+            width: 930 #vw,
+            margin-left: -10 #vw
+        ))
+    }
+    @include use-hook("[page=grid] .layout.ui-collection.polyfill-grid > .layout__item") {
+        @include polyfill-advance-set((
+            width: 300 #vw,
+            margin-left: 10 #vw
+        ))
+    }
+}

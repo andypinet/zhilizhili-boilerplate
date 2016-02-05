@@ -1,0 +1,28 @@
+@mixin com-zhilizhili-sites-bolierplate-examples-bilibili-grid() {	
+    [page=bilibili-grid] {
+        @include com-zhilizhili-pc-layout-grid-shim-init(unquote(".polyfill-grid-container"), unquote(".polyfill-grid")) {
+        	> .layout__item {
+        		background-color: get-custom-color("blue", "600");
+        	}
+        }   
+    }
+}
+
+@mixin com-zhilizhili-sites-bolierplate-examples-bilibili-grid-polyfill() {	
+    @include com-zhilizhili-pc-layout-grid-shim-polyfill(
+    	unquote("[page=bilibili-grid]"), unquote(".polyfill-grid-container"), unquote(".polyfill-grid"), 
+    	4,
+    	10,
+    	(
+			width: 1230 #vw
+    	),
+    	(
+            width: 1240 #vw,
+            margin-left: -10 #vw
+		),
+		(
+            width: 300 #vw,
+            margin-left: 10 #vw
+		)
+    ) {};  
+}

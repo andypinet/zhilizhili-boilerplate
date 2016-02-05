@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie8" lang="zh-cn"><![endif]-->
+<!--[if IE 9 ]><html class="ie9" lang="zh-cn"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="" lang="zh-cn"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>music</title>
+    <meta name="description" content="">
+    <meta name="support-vw-vh" content="no">
+    <meta name="support-calc" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/pc/css/normalize.css">
+    <link rel="stylesheet" href="assets/pc/css/index.css?v=<%= version %>">
+    <style id="supportVwVh"></style>
+    <style id="supportCalc"></style>
+    <!-- 总共35k 提供了dom3 es5 大部分功能 -->
+    <!--[if IE 8]>
+    <script src="assets/pc/static/js/es5-shim.min.js"></script>
+    <script src="assets/pc/static/js/html5shiv.min.js"></script>
+    <script src="assets/pc/static/js/respond.min.js"></script>
+    <style>
+        .ng-hide {
+            display: none !important;
+        }
+    </style>
+    <![endif]-->
+    <!--[if lt IE 10]>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <![endif]-->
+    <script src="assets/pc/static/js/jquery-1.11.2.min.js"></script>
+    <script src="assets/pc/static/js/angular.js"></script>
+    <!--[if lt IE 10]>
+    <script src="assets/pc/static/js/flexibility.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    <script src="assets/pc/static/js/base.js"></script>
+    <script src="assets/pc/static/js/support-vw-vh.js"></script>
+    <script src="assets/pc/static/js/support-calc.js"></script>
+    <script src="assets/pc/static/js/html5shiv.min.js"></script>
+    <script src="assets/pc/static/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        window.documentElementclientWidthWithScrollBar = document.documentElement.clientWidth;
+        window.documentElementCurrentclientWidthWithScrollBar = window.documentElementclientWidthWithScrollBar;
+        console.log(window.documentElementclientWidthWithScrollBar);
+    </script>
+</head>
+<body>
+<div class="full-parent" id="app" ng-app="someApp">
+    <div class="full-parent">
+        <div class="layout full-parent flex polyfill-flex horizontal">
+            <div class="layout__item">
+                <ul>
+                    <li><a href="#!/progress">progress</a></li>
+                    <li><a href="#!/slider?uu=3445345&were=4324">slider</a></li>
+                    <li><a href="#!/layout">layout</a></li>
+                    <li><a href="#!/ddd/2014-09-19">ddd</a></li>
+                    <li><a href="#!/eee/2222">eee</a></li>
+                    <li><a href="#!/fff?a=1&nn=4&dfg=676">fff</a></li>
+                </ul>
+            </div>
+            <div class="layout__item full-height utility-pos-relative flex-1">
+                <div class="layout full-parent utility-pos-absolute">
+                    <div class="layout full-parent stack-view scenes">
+                        <div id="scene1" class="layout__item stack-view__item scene" router="/progress">
+                            <div ng-controller="someController">
+
+                                <p>{{message}}</p>
+
+                                <label>
+                                    <strong>New features like ng-model-options work in IE8</strong><br>
+                                    <input ng-model="model.foo" ng-model-options="{debounce: 500}" />
+                                </label>
+                                <pre>model.foo: {{model.foo}}</pre>
+                            </div>
+                        </div>
+                        <div id="scene2" class="layout__item stack-view__item scene" router="/button">
+                            @@include("./pages/button.html")
+                        </div>
+                        <div id="scene3" class="layout__item stack-view__item scene" router="/layout">
+                            @@include("./pages/layout.html")
+                        </div>
+                        <div id="scene4" class="layout__item stack-view__item scene" router="/label">
+                            @@include("./pages/label.html")
+                        </div>
+                        <div id="scene5" class="layout__item stack-view__item scene" router="/form">
+                            @@include("./pages/form.html")
+                        </div>
+                        <div id="scene6" class="layout__item stack-view__item scene" router="/code">
+                            @@include("./pages/code.html")
+                        </div>
+                        <div id="scene7" class="layout__item stack-view__item scene" router="/image">
+                            @@include("./pages/image.html")
+                        </div>
+                        <div id="scene8" class="layout__item stack-view__item scene" router="/grid">
+                            @@include("./pages/grid.html")
+                        </div>
+                        <div id="scene9" class="layout__item stack-view__item scene show" router="/bilibili/grid">
+                            @@include("./examples/bilibili-grid.html")
+                        </div>
+                        <div id="scene10" class="layout__item stack-view__item scene">10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- dom4级 功能 -->
+<!--[if IE 8]>
+<script type="text/javascript">
+    window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
+    supportvwvh("supportVwVh");
+    supportcalc("supportCalc");
+</script>
+<![endif]-->
+
+<script>
+    window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
+    console.log(window.scrollBarWidth);
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    console.log(width);
+</script>
+<script type="text/javascript">
+    angular.module('someApp', [])
+            .controller('someController', function($scope) {
+                $scope.message = 'This works in IE8 and all good browsers';
+            });
+</script>
+</body>
+</html>

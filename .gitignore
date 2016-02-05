@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+/node_modules
+.env
+_ide_helper.php
+/www/*
+/www/assets
+/www/bower_components
+/www/js/about
+/www/upload
+.sass-cache
+.tags
+.idea
+platforms/android
+plugins/cordova-*

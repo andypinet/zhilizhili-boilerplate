@@ -1,0 +1,22 @@
+@mixin com-zhilizhili-site-components-layout() {
+    [page=layout] {
+        .test-flex.horizontal.test-vw {
+            @include register-hook("#{&}");
+        }
+        .test-flex.horizontal.test-calc {
+            @include register-hook("#{&}");
+        }
+    }
+}
+
+@mixin com-zhilizhili-site-components-layout-polyfill() {
+    @include use-hook("[page=layout] .test-flex.horizontal.test-vw") {
+        @include polyfill-advance-set((
+            width: 900 #vw
+        ));
+    }
+    @include use-hook("[page=layout] .test-flex.horizontal.test-calc") {
+        width: calc(100vw - 240px);
+        @include com-zhilizhili-calc-easy-set((width: unquote("100vw - 240px"), parsel: "[page=layout] section.calcsection"));
+    }
+}

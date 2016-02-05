@@ -1,0 +1,126 @@
+@mixin new-element($name: null, $is-in-content: false, $replacesel: null) {
+    $parentsel: #{&};
+    $sellist: sl-explode($parentsel, $delimiter: " ");
+
+    @if str-index($parentsel, "--") != null {
+        $arr: str-explode($parentsel, "--");
+        $parentsel: nth($arr, 1);
+    }
+
+    @if length($sellist) > 1 {
+        @if $is-in-content == true {
+            $parentsel: sl-last($sellist);
+            @if $replacesel != null {
+                $parentsel: str-replace($parentsel, $parentsel, $replacesel);
+                #{$parentsel}__#{$name} {
+                    @content;
+                }
+            }
+            @else {
+                #{$parentsel}__#{$name} {
+                    @content;
+                }
+            }
+        }
+    }
+    @else {
+        #{$parentsel}__#{$name} {
+            @content;
+        }
+    }
+}
+
+@mixin sd-use-hook($hook-name, $searchsel, $replacesel) {
+    $pfx: #{&};
+    @at-root {
+        $pst: $replacesel + " " + str-replace(get-hook($hook-name), $searchsel, "");
+        #{$pst} {
+            @content;
+        }
+    }
+}
+
+@mixin sd-element($name, $searchsel, $replacesel) {
+    $pfx: #{&};
+    @at-root {
+        $pst: $searchsel + " " +  str-replace($pfx, $searchsel, $replacesel) + "__" + $name;
+        #{$pst} {
+            @content;
+        }
+    }
+}
+
+$bem-element-lianjiefu: unquote("__") !global;
+$bem-modify-lianjiefu: unquote("--") !global;
+
+@mixin bem-element($name) {
+    $sel: #{&}$bem-element-lianjiefu + $name;
+    @at-root {
+        #{$sel} {
+            @content;
+        }
+    }
+}
+
+@mixin bem-modify($name) {
+    $sel: #{&}$bem-modify-lianjiefu + $name;
+    @at-root {
+        #{$sel} {
+            @content;
+        }
+    }
+}
+
+@mixin com-bilibili-grid-shim($num-in-row, $gutter, $parsel) {
+    $grid-item-gutter: $gutter * ($num-in-row - 1) / $num-in-row;
+    $percent: 100 / $num-in-row + 0vw;
+    width: calc(#{$percent} - #{$grid-item-gutter}px);
+    &:nth-child(1n) {
+        float: left;
+        margin-right: #{$gutter}px;
+        clear: none;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+    &:nth-child(#{$num-in-row}n) {
+        margin-right: 0;
+    }
+    &:nth-child(#{$num-in-row}n+1) {
+        clear: left;
+    }
+    @include com-zhilizhili-calc-easy-set((width: #{$percent} - #{$grid-item-gutter}px, parsel: $parsel));
+}
+
+$com-bilibili-responsive-grid-selector: () !global;
+
+@mixin com-bilibili-responsive-grid-init($id) {
+    $com-bilibili-responsive-grid-selector: map-deep-set($com-bilibili-responsive-grid-selector, $id, #{&}) !global;
+    &:nth-child(1n) {
+        float: left;
+        clear: none;
+    }
+}
+
+@mixin com-bilibili-responsive-grid-polyfill($id, $num-in-row, $map, $style) {
+    $selector: map-deep-get($com-bilibili-responsive-grid-selector, $id);
+    #{$selector}:nth-child(1n) {
+        @include polyfill-gaoji-set($map)
+    }
+    #{$selector} {
+        @include polyfill-gaoji-set($style);
+    }
+    @at-root {
+        #{$com-zhilizhili-rem-html-polyfill-selector} {
+            #{$selector}:last-child {
+                margin-right: 0;
+            }
+            #{$selector}:nth-child(#{$num-in-row}n) {
+                margin-right: 0;
+            }
+            #{$selector}:nth-child(#{$num-in-row}n+1) {
+                clear: left;
+            }
+        }
+    }
+}

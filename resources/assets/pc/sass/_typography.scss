@@ -1,0 +1,8 @@
+@mixin use-text-align() {
+    $list: start, end, left, right, center, justify, justify-all, match-parent;
+    @each $val in $list {
+        .text-align-#{$val} {
+            text-align: $val;
+        }
+    }
+}

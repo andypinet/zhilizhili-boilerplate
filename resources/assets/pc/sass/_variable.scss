@@ -1,0 +1,9 @@
+$com-bilibili-variables: () !global;
+
+@mixin com-bilibili-variables-set-variable($name, $value) {
+    $com-bilibili-variables: map-deep-set($com-bilibili-variables, $name, $value) !global;
+}
+
+@function com-bilibili-variables-get-variable($name) {
+    @return map-deep-get($com-bilibili-variables, $name);
+}

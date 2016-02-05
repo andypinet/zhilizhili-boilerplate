@@ -1,0 +1,55 @@
+$rem-baseline: 16px;
+
+html {
+    font-size: $rem-baseline;
+}
+
+@include screen("320px", "320px") {
+    html {
+        font-size: 16px !important;
+    }
+}
+
+@include screen("360px", "360px") {
+    html {
+        font-size: 18px !important;
+    }
+}
+
+@include screen("375px", "375px") {
+    html {
+        font-size: 18.75px !important;
+    }
+}
+
+@include screen("412px", "412px") {
+    html {
+        font-size: 20.6px !important;
+    }
+}
+
+@include screen("414px", "414px") {
+    html {
+        font-size: 20.7px !important;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.pos-relative {
+    position: relative;
+}
+
+.pos-absoulte {
+    position: absolute;
+}
+
+.pos-fixed {
+    position: fixed;
+}

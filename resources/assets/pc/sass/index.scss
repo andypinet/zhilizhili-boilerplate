@@ -1,0 +1,201 @@
+@import "import";
+
+// project import
+@import "utils";
+@import "color";
+
+@import "typography";
+
+// icon
+@import "icon";
+
+// shape
+@import "../../../../node_modules/zhilizhili-ui-plus/framework/sass/component/shape";
+
+// layout
+@import "../../../../node_modules/zhilizhili-ui/elements/layout/sass/layout";
+@import "../../../../node_modules/zhilizhili-ui/elements/layout/sass/layout-plus";
+@import "layout";
+
+// utility
+@import "../../../../node_modules/zhilizhili-ui/elements/utility/sass/position";
+
+// button
+@import "../../../../node_modules/zhilizhili-ui/elements/button/sass/button";
+
+// label
+@import "../../../../node_modules/zhilizhili-ui/elements/label/sass/label";
+
+// form
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form";
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form-group";
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form-field";
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form-select";
+
+// progress
+@import "../../../../node_modules/zhilizhili-ui-plus/elements/progress/sass/progress";
+
+// slider
+@import "../../../../node_modules/zhilizhili-ui-plus/elements/slider/sass/slider";
+
+// stack-view
+@import "../../../../node_modules/zhilizhili-ui-touch/elements/stack-view/sass/stack-view";
+
+// project consts
+
+// project functions
+
+// project variables
+
+// project mixins
+
+// project interface
+
+// project use mixins
+@include use-border-box();
+@include reset-body-marigin();
+@include full-screen();
+@include use-full-parent();
+
+// layout
+@include use-layout-inline-block-center();
+@include com-zhilizhili-layout-use-block();
+
+@include use-button();
+@include use-label();
+@include use-utility-position();
+@include use-form();
+@include use-form-group();
+@include use-form-field();
+@include use-form-select();
+@include use-layout-flex();
+@include use-text-align();
+
+@include use-progress();
+@include use-slider();
+
+@include use-stack-view();
+
+// ie8
+@include use-layout-inline-block-center-for-ie8();
+@include use-layout-flex-for-ie8();
+@include com-zhilizhili-layout-use-align-items();
+@include com-zhilizhili-layout-use-align-items-for-ie8();
+
+// page import
+
+// page consts
+
+// page functions
+
+// page variables
+@import "color";
+@include initlize-color-interface($custom-color-types);
+
+// page mixins
+
+// page interface
+
+// page use mixins
+// style可能不显示 所以放后面加载
+@include use-style-interface();
+@include use-stack-view--basic();
+
+// layout
+@include use-layout-table();
+@include initlize-layout-calcsize();
+
+// icon
+
+// set page style
+@include use-button--basic();
+@include use-button--colored();
+@include use-label--basic();
+@include use-label--colored();
+@include use-form-field--basic();
+@include use-form-select--basic();
+.polyfill-flex {
+    -js-display: flex;
+}
+
+// page partials
+.stack-view:not(.shadow) > .stack-view__item {
+    @extend %full-parent;
+    @extend .utility-pos-absolute;
+    background-color: #ffffff;
+    &.show {
+        z-index: 300;
+    }
+    &:not(.show) {
+        z-index: -1;
+    }
+}
+
+html.ie8 {
+    .stack-view > .stack-view__item {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #ffffff;
+        &.show {
+            z-index: 300;
+        }
+        &:not(.show) {
+            z-index: -1;
+        }
+    }
+}
+
+// depency
+@include use-layout-inline-block-center();
+@import "pages/layout";
+@import "pages/button";
+@import "pages/label";
+@import "pages/image";
+@import "pages/grid";
+@import "examples/bilibili-grid";
+
+$desgin-device-width: 1920 !global;
+$desgin-device-height: 1200 !global;
+$adaptDeviceWidth: $desgin-device-width !global;
+body {
+    .scene {
+        overflow: auto;
+    }
+    #loading {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background-color: #00b0ff;
+        &.hide {
+            display: none;
+        }
+    }
+}
+
+@include com-zhilizhili-site-components-layout();
+@include com-zhilizhili-site-components-button();
+@include com-zhilizhili-site-components-label();
+@include com-zhilizhili-site-components-image();
+@include com-zhilizhili-site-components-grid();
+@include com-zhilizhili-sites-bolierplate-examples-bilibili-grid();
+
+@mixin polyfill() {
+    @include com-zhilizhili-site-components-layout-polyfill();
+    @include com-zhilizhili-site-components-button-polyfill();
+    @include com-zhilizhili-site-components-label-polyfill();
+    @include com-zhilizhili-site-components-image-polyfill();
+    @include com-zhilizhili-site-components-grid-polyfill();
+    @include com-zhilizhili-sites-bolierplate-examples-bilibili-grid-polyfill();
+}
+
+@include polyfill();
+
+meta[name="support-vw-vh"] {
+    font-family: json-encode($polyfill);
+}
+
+@include com-zhilizhili-calc-transform-to-html();

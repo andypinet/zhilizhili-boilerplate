@@ -1,0 +1,167 @@
+<div page="layout">
+    <style>
+        [page="layout"] .test-box.pink {
+            background-color: #f1b8e7;
+        }
+        [page="layout"] .test-box.blue {
+            background-color: #00b0ff;
+        }
+        [page="layout"] .horizontal.test-flex {
+            width: 1200px;
+            height: 50px;
+        }
+        [page="layout"] .horizontal.test-flex .layout__item {
+            min-height: 30px;
+        }
+
+        [page="layout"] .vertical.test-flex {
+            width: 700px;
+        }
+        [page="layout"] .vertical.test-flex .layout__item {
+            width: 120px;
+            height: 30px;
+        }
+    </style>
+    <h3>inline-block</h3>
+    <section>
+        <div class="layout inline-block-center test-box pink"><div
+                class="layout__item test-box blue">1</div><div
+                class="layout__item test-box blue">2</div><div
+                class="layout__item test-box blue">3</div></div>
+    </section>
+    <h3>inline-block center</h3>
+    <section>
+        <div class="layout inline-block-center text-align-center test-box pink"><div
+                class="layout__item test-box blue">1</div><div
+                class="layout__item test-box blue">2</div><div
+                class="layout__item test-box blue">3</div></div>
+    </section>
+    <h3>flex row</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex column</h3>
+    <section>
+        <div class="layout flex polyfill-flex vertical test-box pink test-flex">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex justify-content-start</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex justify-content-start">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex justify-content-center</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex justify-content-center">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex justify-content-end</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex justify-content-end">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex justify-content-space-between</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex justify-content-space-between">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex justify-content-space-around</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex justify-content-space-around">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex vertical-center</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal vertical-center test-box pink test-flex">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex vertical-center and horizontal center</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal vertical-center horizontal-center test-box pink test-flex">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex align-items-start</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex align-items-start">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex align-items-end</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex align-items-end">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex align-items-center</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex align-items-center">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex align-items-baseline</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex align-items-baseline">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>flex align-items-stretch</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex align-items-stretch">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>vw</h3>
+    <section>
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex test-vw align-items-stretch">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+    <h3>calc</h3>
+    <section class="calcsection">
+        <div class="layout flex polyfill-flex horizontal test-box pink test-flex test-calc align-items-stretch">
+            <div class="layout__item test-box blue">1</div>
+            <div class="layout__item test-box blue">2</div>
+            <div class="layout__item test-box blue">3</div>
+        </div>
+    </section>
+</div>

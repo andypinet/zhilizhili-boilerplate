@@ -1,0 +1,60 @@
+@function mq($args...) {
+    $media-type: 'only screen';
+    $media-type-key: 'media-type';
+    $args: keywords($args);
+    $expr: '';
+
+    @if map-has-key($args, $media-type-key) {
+        $media-type: map-get($args, $media-type-key);
+        $args: map-remove($args, $media-type-key);
+    }
+
+    @each $key, $value in $args {
+        @if $value {
+            $expr: "#{$expr} and (#{$key}: #{$value})";
+        }
+    }
+
+    @return #{$media-type} #{$expr};
+}
+
+@function screen($min, $max, $orientation: false) {
+    @return mq($min-width: $min, $max-width: $max, $orientation: $orientation);
+}
+
+$custom-deivces: (
+        "mobile": 320,
+        "pad": 768,
+        "desktop": 1280,
+) !global;
+
+$custom-deivces-media: () !global;
+$custom-deivces-hook: () !global;
+
+@mixin initlize-media-hooks($custom-deivces) {
+    $custom-deivces-indicators: map-keys($custom-deivces);
+    $custom-deivces-indicatorslength: length($custom-deivces-indicators);
+
+    @for $i from 1 through $custom-deivces-indicatorslength {
+        $currentDeviceIndicator: nth($custom-deivces-indicators, $i);
+        $currentDevice: map-deep-get($custom-deivces, $currentDeviceIndicator);
+        $currentMedia: $currentDevice + 0px;
+        $nextDeviceIndicator: if($i < $custom-deivces-indicatorslength, nth($custom-deivces-indicators, ($i + 1)), null);
+        $nextDevice: if($nextDeviceIndicator !=null, map-deep-get($custom-deivces, $nextDeviceIndicator), 2881);
+        $nextMedia: $nextDevice + 0px - 1;
+        @include screen($currentMedia, $nextMedia) {
+            $custom-deivces-media: map-deep-set($custom-deivces-media, $currentDeviceIndicator, screen($currentMedia, $nextMedia)) !global;
+            $custom-deivces-hook: map-deep-set($custom-deivces-hook, $currentDeviceIndicator, "device #{$currentDeviceIndicator}") !global;
+        }
+    }
+}
+
+@mixin use-media-hook($device) {
+    @media #{map-deep-get($custom-deivces-media, $device)} {
+        @at-root {
+            @content;
+        }
+    }
+}
+
+@include initlize-media-hooks($custom-deivces);
