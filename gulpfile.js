@@ -408,9 +408,9 @@ gulp.task("watch-framework", function(name, dest){
     gulp.watch(`framework/src/${dest}/${name}.js`, hst(name, dest))
 });
 
-gulp.task("build-static-js", function() {
-	var src = paths.srcRoot + "assets/pc/static/js/**/*.js";
-	var dest = paths.destRoot + "assets/pc/static/js/";
+gulp.task("build-static-js", function(name) {
+	var src = paths.srcRoot + `assets/${name}/static/js/**/*.js`;
+	var dest = paths.destRoot + `assets/${name}/static/js/`;
 	gulp.src(src)
 		.pipe(gulp.dest(dest));
 });
@@ -425,7 +425,7 @@ gulp.task("build-project-style", function() {
 
 gulp.task("build-project-static", function() {
 	// 构建index.scss
-    exec("gulp build-static-js", function(err, stdout, stderr) {
+    exec("gulp build-static-js -d --name pc", function(err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
     });  
