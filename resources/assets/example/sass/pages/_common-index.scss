@@ -1,0 +1,56 @@
+@mixin com-zhilizhili-pc-layout-current-polyfill($selctor, $width, $leftwidth, $rightwidth, $mainstyle: (), $leftstyle: (), $rightstyle: ()) {
+    .layout.polyfill-flex {
+        &#{$selctor} {
+            width: $width !important;
+            > .layout__item[current-polyfill-layout=left] {
+                width: $leftwidth;
+                @include com-zhilizhili-utils-map-to-style($leftstyle);
+            }
+            > .layout__item[current-polyfill-layout=right] {
+                width: $rightwidth;
+                @include com-zhilizhili-utils-map-to-style($rightstyle);
+            }
+            @include com-zhilizhili-utils-map-to-style($mainstyle);
+            @content;
+        }
+    }
+}
+
+@mixin com-zhilizhili-site-pc-boilerplate-example-common-index() {
+    $pageselector: unquote("[page=commonIndex]");
+    @include app($appselector) {
+        #{$pageselector} {
+            header {
+                background-color: rgba(0,0,0,0.4);
+            }
+            @include com-zhilizhili-pc-layout-current-polyfill(".topbar", 100%, 40%, 60%, (), (), ()) {
+            };
+            @include com-zhilizhili-responsive-container-set(1351px, (
+                "header": (
+                    width: 960px
+                ),
+                "main": (
+                    width: 960px
+                ),
+                "footer": (
+                    width: 960px
+                )
+            ),(
+                "header": (
+                    width: 1143px
+                ),
+                "main": (
+                    width: 1143px
+                ),
+                "footer": (
+                    width: 1143px
+                )
+            ));
+            @include register-hook("#{&}");
+        }
+    }
+}
+
+@mixin com-zhilizhili-site-pc-boilerplate-example-common-index-polyfill() {
+    $pageselector: unquote("[page=commonIndex]");
+}

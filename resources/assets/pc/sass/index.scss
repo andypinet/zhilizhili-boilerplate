@@ -108,12 +108,28 @@
 // icon
 
 // set page style
+@include initlize-bg-class($custom-color-types);
+@include initlize-color-class($custom-color-types);
+@include initlize-color-gen(".bg-red-yellow", "background-color", "yellow", "700");
+@include initlize-color-gen(".bg-grey-200", "background-color", "grey", "200");
+@include initlize-color-gen(".bg-grey-300", "background-color", "grey", "300");
+@include initlize-color-gen(".bg-grey-400", "background-color", "grey", "400");
+@include initlize-color-gen(".color-grey-light", "color", "grey", "500");
 @include use-button--basic();
 @include use-button--colored();
 @include use-label--basic();
 @include use-label--colored();
 @include use-form-field--basic();
 @include use-form-select--basic();
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.color-white {
+    color: #ffffff;
+}      
+
 .polyfill-flex {
     -js-display: flex;
 }

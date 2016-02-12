@@ -1,0 +1,326 @@
+$namespace: "zl";
+
+@import "import";
+
+// project import
+@import "utils";
+@import "color";
+
+@import "typography";
+
+// icon
+@import "icon";
+
+// shape
+@import "../../../../node_modules/zhilizhili-ui-plus/framework/sass/component/shape";
+
+// layout
+@import "../../../../node_modules/zhilizhili-ui/elements/layout/sass/layout";
+@import "../../../../node_modules/zhilizhili-ui/elements/layout/sass/layout-plus";
+@import "layout";
+
+// utility
+@import "../../../../node_modules/zhilizhili-ui/elements/utility/sass/position";
+@import "../../../../node_modules/zhilizhili-ui/elements/utility/sass/overflow";
+
+// responsive
+@import "../../../../node_modules/zhilizhili-ui/elements/responsive/sass/responsive";
+
+// button
+@import "../../../../node_modules/zhilizhili-ui/elements/button/sass/button";
+
+// label
+@import "../../../../node_modules/zhilizhili-ui/elements/label/sass/label";
+
+// form
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form";
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form-group";
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form-field";
+@import "../../../../node_modules/zhilizhili-ui/elements/form/sass/form-select";
+
+// progress
+@import "../../../../node_modules/zhilizhili-ui-plus/elements/progress/sass/progress";
+
+// slider
+@import "../../../../node_modules/zhilizhili-ui-plus/elements/slider/sass/slider";
+
+// stack-view
+@import "../../../../node_modules/zhilizhili-ui-touch/elements/stack-view/sass/stack-view";
+
+// project consts
+
+// project functions
+
+// project variables
+
+// project mixins
+
+// project interface
+
+// project use mixins
+@include use-border-box();
+@include reset-body-marigin();
+@include full-screen();
+@include use-full-parent();
+
+// layout
+@include use-layout-inline-block-center();
+@include com-zhilizhili-layout-use-block();
+
+@include use-button();
+@include use-label();
+@include use-utility-position();
+@include use-form();
+@include use-form-group();
+@include use-form-field();
+@include use-form-select();
+@include use-layout-flex();
+@include use-text-align();
+@include com-zhilizhili-use-utility-overflow();
+
+@include use-progress();
+@include use-slider();
+
+@include use-stack-view();
+
+// ie8
+@include use-layout-inline-block-center-for-ie8();
+@include use-layout-flex-for-ie8();
+@include com-zhilizhili-layout-use-align-items();
+@include com-zhilizhili-layout-use-align-items-for-ie8();
+
+// page import
+
+// page consts
+
+// page functions
+
+// page variables
+@import "color";
+@include initlize-color-interface($custom-color-types);
+
+// page mixins
+
+// page interface
+
+// page use mixins
+// style可能不显示 所以放后面加载
+@include use-style-interface();
+@include use-stack-view--basic();
+
+// layout
+@include use-layout-table();
+@include initlize-layout-calcsize();
+
+// icon
+
+// set page style
+@include use-button--basic();
+@include use-button--colored();
+@include use-label--basic();
+@include use-label--colored();
+@include use-form-field--basic();
+@include use-form-select--basic();
+.polyfill-flex {
+    -js-display: flex;
+}
+
+// page partials
+.stack-view:not(.shadow) > .stack-view__item {
+    @extend %full-parent;
+    @extend .utility-pos-absolute;
+    background-color: #ffffff;
+    &.show {
+        z-index: 300;
+    }
+    &:not(.show) {
+        z-index: -1;
+    }
+}
+
+html.ie8 {
+    .stack-view > .stack-view__item {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #ffffff;
+        &.show {
+            z-index: 300;
+        }
+        &:not(.show) {
+            z-index: -1;
+        }
+    }
+}
+
+// depency
+@include use-layout-inline-block-center();
+
+@mixin app($selector) {
+    #{$selector} {
+        @content;
+    }
+}
+
+@mixin com-zhilizhili-site-examples-exp() {
+    $pageselector: unquote("[page=playcontrol]");
+    @include app($appselector) {
+        [page=playcontrol] {
+            color: get-custom-color("blue", "600");
+            @include register-hook("#{&}");
+        }        
+    }
+}
+
+@mixin com-zhilizhili-site-examples-exp-polyfill() {
+    $pageselector: unquote("[page=playcontrol]");
+    @include use-hook("body #{$appselector} #{$pageselector}") {
+    }
+}
+
+
+$desgin-device-width: 1920 !global;
+$desgin-device-height: 1200 !global;
+$adaptDeviceWidth: $desgin-device-width !global;
+
+@import "../../example/sass/pages/common-index";
+
+/// @access public
+/// @author lbc
+/// @group com.zhilizhili
+/// @param {String} $imagepath
+/// @param {String} $folder
+/// @param {String} $extension [png]
+@mixin com-zhilizhili-background-image-set($imagepath, $folder, $extension: png) {
+    $url: $folder + $imagepath + "." + $extension;
+    background-image: url($url);
+}
+
+/// @access public
+/// @author lbc
+/// @group com.zhilizhili.boilderplate
+/// @param {String} $imagepath
+@mixin com-zhilizhili-site-boilderplate-background-image-set($imagepath) {
+    @include com-zhilizhili-background-image-set($imagepath, "/assets/example/static/img/");
+}
+
+/// @access public
+/// @author lbc
+///
+/// sass 基础样式
+/// @group com.zhilizhili
+@mixin com-zhilizhili-background-image-common() {
+    background-repeat: no-repeat;
+    background-position: center center;
+    @content;
+}
+
+@function com-zhilizhili-transform-to-pc-real-vw($value) {
+    @return $desgin-device-width * ($value / 100);
+}
+
+$appselector: unquote("[ng-app=exampleApp]") !global;
+body {
+    .scene {
+        overflow: auto;
+    }
+    .global-brand {
+        width: 150px;
+        height: 50px;
+        @include com-zhilizhili-site-boilderplate-background-image-set("logo-128");
+        @include com-zhilizhili-background-image-common();
+    }
+    @include com-zhilizhili-site-examples-exp();
+    @include com-zhilizhili-site-pc-boilerplate-example-common-index();
+}
+
+@mixin com-bilibili-gen-padding-polyfill($level: 600, $polyfill-value: 30, $list: (left,top,right,bottom,horizontal,vertical)) {
+    @each $value in $list {
+        @if $value == horizontal {
+            .padding-horizontal-#{$level} {
+                @include polyfill-advance-set((
+                    padding-left: $polyfill-value  #vw,
+                    padding-right: $polyfill-value #vw
+                ));
+            }
+        } @else if $value == vertical {
+            .padding-vertical-#{$level} {
+                @include polyfill-advance-set((
+                    padding-top: $polyfill-value  #vw,
+                    padding-bottom: $polyfill-value  #vw
+                ));
+            }
+        } @else {
+            .padding-#{$value}-#{$level} {
+                @include polyfill-advance-set((
+                    padding-#{$value}: $polyfill-value  #vw
+                ));
+            }
+        }
+    }
+}
+
+@mixin com-bilibili-gen-margin-polyfill($level: 600, $polyfill-value: 30, $list: (left,top,right,bottom,horizontal,vertical)) {
+    @each $value in $list {
+        @if $value == horizontal {
+            .margin-horizontal-#{$level} {
+                @include polyfill-advance-set((
+                    margin-left: $polyfill-value  #vw,
+                    margin-right: $polyfill-value #vw
+                ));
+            }
+        } @else if $value == vertical {
+            .margin-vertical-#{$level} {
+                @include polyfill-advance-set((
+                    margin-top: $polyfill-value  #vw,
+                    margin-bottom: $polyfill-value  #vw
+                ));
+            }
+        } @else {
+            .margin-#{$value}-#{$level} {
+                @include polyfill-advance-set((
+                    margin-#{$value}: $polyfill-value  #vw
+                ));
+            }
+        }
+    }
+}    
+
+
+@mixin polyfill() {
+    @include com-bilibili-gen-padding-polyfill();
+    @include com-bilibili-gen-padding-polyfill(500, 25);
+    @include com-bilibili-gen-padding-polyfill(400, 20);
+    @include com-bilibili-gen-padding-polyfill(300, 15);
+    @include com-bilibili-gen-padding-polyfill(200, 10);
+    @include com-bilibili-gen-padding-polyfill(100, 5);
+    @include com-bilibili-gen-margin-polyfill();
+    @include com-bilibili-gen-margin-polyfill(500, 25);
+    @include com-bilibili-gen-margin-polyfill(400, 20);
+    @include com-bilibili-gen-margin-polyfill(300, 15);
+    @include com-bilibili-gen-margin-polyfill(200, 10);
+    @include com-bilibili-gen-margin-polyfill(100, 5);    
+    @for $i from 1 through 25  {
+        $index: $i * 4;
+        .#{$namespace}-length-#{$index}vw {
+            @include polyfill-advance-set((
+                width: com-zhilizhili-transform-to-pc-real-vw($index) #vw
+            ));
+        }    
+    }    
+    @include com-zhilizhili-site-examples-exp-polyfill();
+    @include com-zhilizhili-site-pc-boilerplate-example-common-index-polyfill();
+}
+
+@include polyfill();
+
+meta[name="support-vw-vh-for-example"] {
+    font-family: json-encode($polyfill);
+}
+
+meta[name="support-calc-for-example"] {
+    $length: com-zhilizhili-utils-map-length($support-calc);
+    @if $length > 0 {
+        font-family: json-encode($support-calc);
+    }
+}

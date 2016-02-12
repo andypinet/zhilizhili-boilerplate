@@ -113,7 +113,6 @@ gulp.task('watch-pcsass', function() {
 	gulp.watch(paths.srcRoot + 'assets/pc/sass/**/*.scss', ["build-pcsass"]);
 });
 
-
 gulp.task('build-pc', function(src, dest){
 	zTask.require('build-umd')({
 		src: src,
@@ -220,8 +219,8 @@ gulp.task("deploy:element", function(name, path) {
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 
-gulp.task('imagemin', function(){
-	return gulp.src('resources/assets/pc/img/*')
+gulp.task('imagemin', function(folder){
+	return gulp.src(`resources/assets/pc/img/*`)
 		.pipe(imagemin({
 			progressive: true,
 			svgoPlugins: [{removeViewBox: false}],
@@ -326,14 +325,14 @@ gulp.task("watch-androidsass", function() {
 	gulp.watch(paths.srcRoot + "assets/android/**/*.scss", ["build-androidsass"]);
 });
 
-gulp.task("android-imagemin", function(){
-	return gulp.src("resources/assets/android/static/img/**/*")
+gulp.task("example-imagemin", function(folder){
+	return gulp.src(`resources/assets/${folder}/static/img/**/*`)
 		.pipe(imagemin({
 			progressive: true,
 			svgoPlugins: [{removeViewBox: false}],
 			use: [pngquant()]
 		}))
-		.pipe(gulp.dest("www/assets/android/static/img"));
+		.pipe(gulp.dest(`www/assets/${folder}/static/img`));
 });
 
 var template = require('gulp-template');
@@ -402,6 +401,10 @@ var hst = function(name, destpath) {
         });
     }, 0);
 };
+
+gulp.task('watch-examplesass', function() {
+	gulp.watch(paths.srcRoot + 'assets/example/sass/**/*.scss', ["build-pcsass"]);
+});
 
 gulp.task("watch-framework", function(name, dest){
     dest = dest || '';

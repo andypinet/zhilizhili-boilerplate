@@ -9,11 +9,16 @@
     <meta name="description" content="">
     <meta name="support-vw-vh" content="no">
     <meta name="support-calc" content="no">
+    <meta name="support-vw-vh-for-example" content="no">
+    <meta name="support-calc-for-example" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/pc/css/normalize.css">
     <link rel="stylesheet" href="assets/pc/css/index.css?v=<%= version %>">
+    <link rel="stylesheet" href="assets/pc/css/example.css?v=<%= version %>">
     <style id="supportVwVh"></style>
     <style id="supportCalc"></style>
+    <style id="supportVwVhForExample"></style>
+    <style id="supportCalcForExample"></style>
     <!-- 总共35k 提供了dom3 es5 大部分功能 -->
     <!--[if IE 8]>
     <script src="assets/pc/static/js/es5-shim.min.js"></script>
@@ -45,19 +50,19 @@
     </script>
 </head>
 <body>
-<div class="full-parent" id="app" ng-app="someApp">
+<div class="full-parent" id="app" ng-app="exampleApp">
     <div class="full-parent">
         <div class="layout full-parent flex polyfill-flex horizontal">
-            <div class="layout__item">
-                <ul>
-                    <li><a href="#!/progress">progress</a></li>
-                    <li><a href="#!/slider?uu=3445345&were=4324">slider</a></li>
-                    <li><a href="#!/layout">layout</a></li>
-                    <li><a href="#!/ddd/2014-09-19">ddd</a></li>
-                    <li><a href="#!/eee/2222">eee</a></li>
-                    <li><a href="#!/fff?a=1&nn=4&dfg=676">fff</a></li>
-                </ul>
-            </div>
+            <!--<div class="layout__item">-->
+                <!--<ul>-->
+                    <!--<li><a href="#!/progress">progress</a></li>-->
+                    <!--<li><a href="#!/slider?uu=3445345&were=4324">slider</a></li>-->
+                    <!--<li><a href="#!/layout">layout</a></li>-->
+                    <!--<li><a href="#!/ddd/2014-09-19">ddd</a></li>-->
+                    <!--<li><a href="#!/eee/2222">eee</a></li>-->
+                    <!--<li><a href="#!/fff?a=1&nn=4&dfg=676">fff</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
             <div class="layout__item full-height utility-pos-relative flex-1">
                 <div class="layout full-parent utility-pos-absolute">
                     <div class="layout full-parent stack-view scenes">
@@ -76,6 +81,15 @@
                         <div id="scene2" class="layout__item stack-view__item scene" router="/bilibili/grid">
                             @@include("./examples/bilibili-grid.html")
                         </div>
+                        <div id="scene3" class="layout__item stack-view__item scene" router="/playcontrol">
+                            @@include("./examples/playcontrol.html")
+                        </div>
+                        <div id="scene4" class="layout__item stack-view__item scene" router="/liveroom">
+                            @@include("./examples/liveroom.html")
+                        </div>
+                        <div id="scene5" class="layout__item stack-view__item scene show">
+                            @@include("./examples/common-index.html")
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,19 +100,21 @@
 <!--[if IE 8]>
 <script type="text/javascript">
     window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
-    supportvwvh("supportVwVh");
-    supportcalc("supportCalc");
+    supportvwvh("supportVwVh", 'meta[name="support-vw-vh"]');
+    supportvwvh("supportVwVhForExample", 'meta[name="support-vw-vh-for-example"]');
+    supportcalc("supportCalc", 'meta[name="support-calc"]');
+    supportcalc("supportCalcForExample", 'meta[name="support-calc-for-example"]');
 </script>
 <![endif]-->
 
 <script>
-    window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
-    console.log(window.scrollBarWidth);
-    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    console.log(width);
+//    window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
+//    console.log(window.scrollBarWidth);
+//    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+//    console.log(width);
 </script>
 <script type="text/javascript">
-    angular.module('someApp', [])
+    angular.module('exampleApp', [])
             .controller('someController', function($scope) {
                 $scope.message = 'This works in IE8 and all good browsers';
             });

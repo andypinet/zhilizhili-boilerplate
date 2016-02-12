@@ -6,9 +6,16 @@ watch-template:
 watch-style:
 	gulp watch-pcsass
 watch-example-template:
-	cd resources/ && gulp watch-template --name example --watch "/**/*" 	
+	cd resources/ && gulp watch-template --name example --watch "/**/*"
+example-static:
+	gulp build-static-js -d --name example
 
 watch-vue-template:
 	cd resources/ && gulp watch-template --name vue --watch "/**/*" 		
-make-vue-static:
+vue-static:
 	gulp build-static-js -d --name vue
+update:
+	npm update zhilizhili-ui zhilizhili-ui-plus zhilizhili-ui-touch
+
+pc-sassdoc:
+	cd resources/assets/pc && ../../../node_modules/sassdoc/bin/sassdoc src "sass"

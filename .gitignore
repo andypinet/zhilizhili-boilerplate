@@ -12,3 +12,4 @@ _ide_helper.php
 .idea
 platforms/android
 plugins/cordova-*
+**/sassdoc/*

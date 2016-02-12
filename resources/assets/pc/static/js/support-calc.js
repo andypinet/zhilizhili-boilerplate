@@ -44,8 +44,8 @@ function supportcalc(id) {
     }
 
     var pxReg = /\d*(?=px)/g;
-    var percentValueReg = /\d*(?=vw)/g;
-    var parentReg = /\d*(?=%)/g;
+    var percentValueReg = /[\d.]*(?=vw)/g;
+    var parentReg = /[\d.]*(?=%)/g;
     var precentValueArr = [];
     var pxValueArr = [];
 
@@ -54,10 +54,27 @@ function supportcalc(id) {
     function cal(cssprop, cssdelcare) {
         var ret = cssprop;
         if (cssprop.match(parentReg)) {
-            var parentElement = document.querySelector(cssdelcare[PARSEL]);
+            if (!cssdelcare["parwidth"]) {
+                var parentElement = document.querySelector(cssdelcare[PARSEL]);
 
-            if (parentElement) {
-                var parentWidth = parentElement.offsetWidth;
+                if (parentElement) {
+                    var parentWidth = parentElement.offsetWidth;
+                    precentValueArr = cssprop.trim().match(parentReg).filter(function(ele) {
+                        if (ele.trim() != "" && isNumber(parseInt(ele))) {
+                            return parseInt(ele);
+                        }
+                    });
+                    pxValueArr = cssprop.trim().match(pxReg).filter(function(ele) {
+                        if (ele.trim() != "" && isNumber(parseInt(ele))) {
+                            return parseInt(ele);
+                        }
+                    });
+                    precentValueArr.forEach(function(percent) {
+                        ret = ret.replace(percent+"%", percent * parentWidth / 100);
+                    });
+                }
+            } else {
+                var parentWidth = parseFloat(cssdelcare["parwidth"].replace("vw", "")) / 100 * viewportwidth - parseFloat(cssdelcare["pargutter"]) * 2;
                 precentValueArr = cssprop.trim().match(parentReg).filter(function(ele) {
                     if (ele.trim() != "" && isNumber(parseInt(ele))) {
                         return parseInt(ele);
@@ -71,7 +88,7 @@ function supportcalc(id) {
                 precentValueArr.forEach(function(percent) {
                     ret = ret.replace(percent+"%", percent * parentWidth / 100);
                 });
-            }
+            }            
         } else {
             var parentWidth = viewportwidth;
             precentValueArr = cssprop.trim().match(percentValueReg).filter(function(ele) {
@@ -111,7 +128,7 @@ function supportcalc(id) {
 
             str = str + (" " + cssdelcarekey + " {");
             for (key in cssdelcare) {
-                if (key != PARSEL) {
+                if (key != "parsel" && key != "parwidth" && key != "pargutter") {
                     cssprop = cssdelcare[key];
                     str = str + setCalc(key, cssprop, cssdelcare);
                 }
@@ -121,7 +138,7 @@ function supportcalc(id) {
         sheet.cssText = str;
     }
 
-    setCssText();
+    // setCssText();
 
     window.addEventListener("resize", function() {
         setCssText();
