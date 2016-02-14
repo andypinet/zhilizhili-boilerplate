@@ -441,3 +441,25 @@ gulp.task("build-project-html", function() {
         console.log(stderr);
     });  
 });
+
+var gulpif = require('gulp-if');
+var sprity = require('sprity');
+
+// generate sprite.png and _sprite.scss
+/**
+ * 构建icon sprites
+ * @param {string} title - The title of the book.
+ * @param {string} author - The author of the book.
+ */
+function doSprites() {
+    return sprity.src({
+            src: paths.srcRoot + `assets/example/static/img/sprites/*.{png,jpg}`,
+            style: paths.srcRoot + 'assets/example/presass/_sprite.scss',
+            // ... other optional options
+            // for example if you want to generate scss instead of css
+            processor: 'sass' // make sure you have installed sprity-sass
+        })
+        .pipe(gulpif('*.png', gulp.dest(paths.destRoot + 'assets/example/static/img'), gulp.dest(paths.srcRoot + 'assets/example/sass/')));
+}
+
+gulp.task('sprites', doSprites);

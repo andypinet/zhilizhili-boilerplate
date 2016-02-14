@@ -1,0 +1,69 @@
+@import '../../example/sass/sprite'; // the generated style file (sprite.scss)
+
+/// @access public
+/// @author lbc
+/// @group com.zhilizhili.boilderplate
+/// @param {String} $imagepath
+@mixin com-zhilizhili-site-boilderplate-background-image-set($imagepath) {
+    @include com-zhilizhili-zhilizhiliui-utils-background-image-set($imagepath, "/assets/example/static/img/");
+}
+
+@mixin com-bilibili-gen-padding-polyfill($level: 600, $polyfill-value: 30, $list: (left,top,right,bottom,horizontal,vertical)) {
+    @each $value in $list {
+        @if $value == horizontal {
+            .padding-horizontal-#{$level} {
+                @include polyfill-advance-set((
+                        padding-left: $polyfill-value  #vw,
+                        padding-right: $polyfill-value #vw
+                ));
+            }
+        } @else if $value == vertical {
+            .padding-vertical-#{$level} {
+                @include polyfill-advance-set((
+                        padding-top: $polyfill-value  #vw,
+                        padding-bottom: $polyfill-value  #vw
+                ));
+            }
+        } @else {
+            .padding-#{$value}-#{$level} {
+                @include polyfill-advance-set((
+                        padding-#{$value}: $polyfill-value  #vw
+                ));
+            }
+        }
+    }
+}
+
+@mixin com-bilibili-gen-margin-polyfill($level: 600, $polyfill-value: 30, $list: (left,top,right,bottom,horizontal,vertical)) {
+    @each $value in $list {
+        @if $value == horizontal {
+            .margin-horizontal-#{$level} {
+                @include polyfill-advance-set((
+                        margin-left: $polyfill-value  #vw,
+                        margin-right: $polyfill-value #vw
+                ));
+            }
+        } @else if $value == vertical {
+            .margin-vertical-#{$level} {
+                @include polyfill-advance-set((
+                        margin-top: $polyfill-value  #vw,
+                        margin-bottom: $polyfill-value  #vw
+                ));
+            }
+        } @else {
+            .margin-#{$value}-#{$level} {
+                @include polyfill-advance-set((
+                        margin-#{$value}: $polyfill-value  #vw
+                ));
+            }
+        }
+    }
+}
+
+@mixin com-zhilizhili-material-design-length-gen($mode, $level: 600, $polyfill-value: 60) {
+    .#{$ns}-#{$mode}-#{$level} {
+        @include polyfill-advance-set((
+                #{$mode}: $polyfill-value #vw
+        ))
+    }
+}

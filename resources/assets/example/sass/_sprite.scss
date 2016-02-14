@@ -1,0 +1,68 @@
+$sprite-arrow-left-grey: -0px -0px 24px 24px;
+$sprite-arrow-left-blue: -0px -24px 24px 24px;
+$sprite-arrow-right-blue: -0px -48px 24px 24px;
+$sprite-arrow-right-grey: -0px -72px 24px 24px;
+$sprite-arrow-right-white: -0px -96px 24px 24px;
+$sprite-qq-grey: -0px -120px 24px 24px;
+$sprite-arrow-left-white: -0px -144px 24px 24px;
+$sprite-watch-grey: -0px -168px 27px 24px;
+$sprite-refresh-grey: -0px -192px 25px 25px;
+$sprite-speaker-pink: -0px -217px 25px 25px;
+$sprite-shubao-blue: -0px -242px 28px 25px;
+$sprite-refresh-white: -0px -267px 25px 25px;
+$sprite-download-link-white: -0px -292px 25px 25px;
+$sprite-download-link-black: -0px -317px 25px 25px;
+$sprite-qq-white: -0px -342px 25px 25px;
+$sprite-refresh-blue: -0px -367px 25px 25px;
+$sprite-help-blue: -0px -392px 26px 26px;
+$sprite-notice-grey: -0px -418px 26px 26px;
+$sprite-weibo-white: -0px -444px 26px 26px;
+$sprite-shubao-open-blue: -0px -470px 27px 26px;
+$sprite-user-grey: -0px -496px 26px 26px;
+$sprite-gift-pink: -0px -522px 26px 26px;
+$sprite-logo-bg: -0px -548px 47px 27px;
+$sprite-laoye-red: -0px -575px 28px 27px;
+$sprite-weibo-grey: -0px -602px 27px 27px;
+$sprite-xian-pink: -0px -629px 28px 28px;
+$sprite-fangguan-gold: -0px -657px 28px 28px;
+$sprite-search-grey: -0px -685px 29px 28px;
+$sprite-chipmunk: -0px -713px 30px 28px;
+$sprite-notice-white: -0px -741px 28px 28px;
+$sprite-pc-grey: -0px -769px 28px 28px;
+$sprite-silver-seed: -0px -797px 28px 28px;
+$sprite-gold-seed: -0px -825px 28px 28px;
+$sprite-xunzhang-blue: -0px -853px 28px 28px;
+$sprite-tv-white: -0px -881px 28px 28px;
+$sprite-laoye-gold: -0px -909px 28px 28px;
+$sprite-user-white: -0px -937px 28px 28px;
+$sprite-laoye-grey: -0px -965px 28px 28px;
+$sprite-pc-white: -0px -993px 28px 28px;
+$sprite-search-white: -0px -1021px 29px 29px;
+$sprite-bi-gold: -0px -1050px 29px 29px;
+$sprite-vs-blue: -0px -1079px 30px 30px;
+$sprite-tv-grey: -0px -1109px 29px 30px;
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 3);
+}
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 4);
+}
+@function sprite-width($sprite) {
+  @return nth($sprite, 3);
+}
+@function sprite-height($sprite) {
+  @return nth($sprite, 4);
+}
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 1);
+  $sprite-offset-y: nth($sprite, 2);
+  background-position: $sprite-offset-x $sprite-offset-y;
+}
+@mixin sprite($sprite, $display: inline-block) {
+  @include sprite-position($sprite);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: $display;
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}

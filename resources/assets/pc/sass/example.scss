@@ -11,6 +11,8 @@ $namespace: "zl";
 // icon
 @import "icon";
 
+@import "project";
+
 // shape
 @import "../../../../node_modules/zhilizhili-ui-plus/framework/sass/component/shape";
 
@@ -47,6 +49,9 @@ $namespace: "zl";
 // stack-view
 @import "../../../../node_modules/zhilizhili-ui-touch/elements/stack-view/sass/stack-view";
 
+// nav
+@import "../../../../node_modules/zhilizhili-ui/elements/nav/sass/nav";
+
 // project consts
 
 // project functions
@@ -63,6 +68,10 @@ $namespace: "zl";
 @include full-screen();
 @include use-full-parent();
 
+@include com-zhilizhili-use-utility-float();
+
+@include com-zhilizhili-use-link-default();
+
 // layout
 @include use-layout-inline-block-center();
 @include com-zhilizhili-layout-use-block();
@@ -77,6 +86,10 @@ $namespace: "zl";
 @include use-layout-flex();
 @include use-text-align();
 @include com-zhilizhili-use-utility-overflow();
+@include use-com-zhilizhili-nav();
+
+// 使用图片icon
+@include com-zhilizhili-site-use-img-icon();
 
 @include use-progress();
 @include use-slider();
@@ -98,6 +111,8 @@ $namespace: "zl";
 // page variables
 @import "color";
 @include initlize-color-interface($custom-color-types);
+@include initlize-color-class-with-ns($custom-color-types);
+@include initlize-border-color-class-with-ns($custom-color-types);
 
 // page mixins
 
@@ -185,35 +200,6 @@ $adaptDeviceWidth: $desgin-device-width !global;
 
 @import "../../example/sass/pages/common-index";
 
-/// @access public
-/// @author lbc
-/// @group com.zhilizhili
-/// @param {String} $imagepath
-/// @param {String} $folder
-/// @param {String} $extension [png]
-@mixin com-zhilizhili-background-image-set($imagepath, $folder, $extension: png) {
-    $url: $folder + $imagepath + "." + $extension;
-    background-image: url($url);
-}
-
-/// @access public
-/// @author lbc
-/// @group com.zhilizhili.boilderplate
-/// @param {String} $imagepath
-@mixin com-zhilizhili-site-boilderplate-background-image-set($imagepath) {
-    @include com-zhilizhili-background-image-set($imagepath, "/assets/example/static/img/");
-}
-
-/// @access public
-/// @author lbc
-///
-/// sass 基础样式
-/// @group com.zhilizhili
-@mixin com-zhilizhili-background-image-common() {
-    background-repeat: no-repeat;
-    background-position: center center;
-    @content;
-}
 
 @function com-zhilizhili-transform-to-pc-real-vw($value) {
     @return $desgin-device-width * ($value / 100);
@@ -224,68 +210,19 @@ body {
     .scene {
         overflow: auto;
     }
-    .global-brand {
+    .brand.global-brand {
         width: 150px;
         height: 50px;
         @include com-zhilizhili-site-boilderplate-background-image-set("logo-128");
-        @include com-zhilizhili-background-image-common();
+        @include com-zhilizhili-zhilizhiliui-utils-background-image-common();
+        @include register-hook("#{&}");
     }
     @include com-zhilizhili-site-examples-exp();
     @include com-zhilizhili-site-pc-boilerplate-example-common-index();
 }
 
-@mixin com-bilibili-gen-padding-polyfill($level: 600, $polyfill-value: 30, $list: (left,top,right,bottom,horizontal,vertical)) {
-    @each $value in $list {
-        @if $value == horizontal {
-            .padding-horizontal-#{$level} {
-                @include polyfill-advance-set((
-                    padding-left: $polyfill-value  #vw,
-                    padding-right: $polyfill-value #vw
-                ));
-            }
-        } @else if $value == vertical {
-            .padding-vertical-#{$level} {
-                @include polyfill-advance-set((
-                    padding-top: $polyfill-value  #vw,
-                    padding-bottom: $polyfill-value  #vw
-                ));
-            }
-        } @else {
-            .padding-#{$value}-#{$level} {
-                @include polyfill-advance-set((
-                    padding-#{$value}: $polyfill-value  #vw
-                ));
-            }
-        }
-    }
-}
 
-@mixin com-bilibili-gen-margin-polyfill($level: 600, $polyfill-value: 30, $list: (left,top,right,bottom,horizontal,vertical)) {
-    @each $value in $list {
-        @if $value == horizontal {
-            .margin-horizontal-#{$level} {
-                @include polyfill-advance-set((
-                    margin-left: $polyfill-value  #vw,
-                    margin-right: $polyfill-value #vw
-                ));
-            }
-        } @else if $value == vertical {
-            .margin-vertical-#{$level} {
-                @include polyfill-advance-set((
-                    margin-top: $polyfill-value  #vw,
-                    margin-bottom: $polyfill-value  #vw
-                ));
-            }
-        } @else {
-            .margin-#{$value}-#{$level} {
-                @include polyfill-advance-set((
-                    margin-#{$value}: $polyfill-value  #vw
-                ));
-            }
-        }
-    }
-}    
-
+@include use-iconfont-pcicons();
 
 @mixin polyfill() {
     @include com-bilibili-gen-padding-polyfill();
@@ -299,7 +236,12 @@ body {
     @include com-bilibili-gen-margin-polyfill(400, 20);
     @include com-bilibili-gen-margin-polyfill(300, 15);
     @include com-bilibili-gen-margin-polyfill(200, 10);
-    @include com-bilibili-gen-margin-polyfill(100, 5);    
+    @include com-bilibili-gen-margin-polyfill(100, 5);
+    @include com-zhilizhili-material-design-length-gen(height, 100, 10);
+    @include com-zhilizhili-material-design-length-gen(height, 200, 20);
+    @include com-zhilizhili-material-design-length-gen(height, 300, 30);
+    @include com-zhilizhili-material-design-length-gen(height, 400, 40);
+    @include com-zhilizhili-material-design-length-gen(height, 500, 50);
     @for $i from 1 through 25  {
         $index: $i * 4;
         .#{$namespace}-length-#{$index}vw {
@@ -307,7 +249,12 @@ body {
                 width: com-zhilizhili-transform-to-pc-real-vw($index) #vw
             ));
         }    
-    }    
+    }
+    .width-100-vw {
+        @include polyfill-advance-set((
+            width: $desgin-device-width #vw
+        ))
+    }
     @include com-zhilizhili-site-examples-exp-polyfill();
     @include com-zhilizhili-site-pc-boilerplate-example-common-index-polyfill();
 }

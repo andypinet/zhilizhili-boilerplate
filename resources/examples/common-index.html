@@ -1,25 +1,144 @@
 <div class="full-parent utility-overflow-auto bg-grey-300" page="commonIndex">
     <header>
-        <div class="layout flex polyfill-flex horizontal vertical-center topbar">
+        <div class="layout flex polyfill-flex horizontal vertical-center topbar" style="display: none !important;">
         	<div class="layout__item" current-polyfill-layout="left">
         		<div class="layout inline-block-center">
-        			<div class="layout__item"><div class="brand global-brand"></div></div>
-        			<div class="layout__item"><div class="zl-length-4vw padding-vertical-200 bg-blue color-white">2</div></div>
-        			<div class="layout__item"><div class="zl-length-4vw padding-vertical-200 bg-blue color-white">3</div></div>
+        			<div class="layout__item full-height"><div class="brand global-brand"></div></div>
+        			<div class="layout__item full-height zl-color-white">
+                        <ul class="zl-nav topnav">
+                            <div class="layout full-height inline-block-center">
+                                <li class="layout__item zl-nav__item margin-left-400">
+                                    <a class="zl-nav__link" href="#">
+                                        <div class="layout inline-block-center">
+                                            <div class="layout__item"><span class="icon icon-img-sprite icon-pc-white"></span></div>
+                                            <div class="layout__item"><span>直播</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="layout__item zl-nav__item  margin-left-400">
+                                    <a class="zl-nav__link" href="#">
+                                        <div class="layout inline-block-center">
+                                            <div class="layout__item"><span class="icon icon-img-sprite icon-tv-white"></span></div>
+                                            <div class="layout__item"><span>直播</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+					</div>
         		</div>
         	</div>
         	<div class="layout__item" current-polyfill-layout="right">
-        		<div style="float: right;">
+        		<div class="zl-utility-float-right">
         			<div class="layout inline-block-center">
-        				<div class="layout__item"><div class="zl-length-4vw padding-vertical-100 bg-blue color-white">3</div></div>
-        				<div class="layout__item"><div class="zl-length-4vw padding-vertical-100 bg-blue color-white">3</div></div>
-        				<div class="layout__item"><div class="zl-length-4vw padding-vertical-100 bg-blue color-white">3</div></div>
-        				<div class="layout__item"><div class="zl-length-4vw padding-vertical-200 bg-blue color-white">1</div></div>
-        				<div class="layout__item"><div class="zl-length-4vw padding-vertical-200 bg-blue color-white">2</div></div>
-        				<div class="layout__item"><div class="zl-length-8vw padding-vertical-200 bg-blue color-white">3</div></div>
+        				<div class="layout__item">
+                            <a class="zl-link zl-color-white" href="http://app.bilibili.com/" target="_blank">
+                                <div class="layout inline-block-center">
+                                    <div class="layout__item"><span class="icon icon-img-sprite icon-download-link-white"></span></div>
+                                    <div class="layout__item"><span>下载</span></div>
+                                </div>
+                            </a>
+                        </div>
+        				<div class="layout__item">
+                            <form action="" class="form topbar__form">
+                                <div class="form-group">
+                                    <div class="form-field form-field--basic zl-color-white zl-border-color-white
+                                    margin-horizontal-200 search-field shape-circle--5px">
+                                        <div class="layout inline-block-center">
+                                            <div class="layout__item form-field__prefix"></div>
+                                            <div class="layout__item form-field__content"><input class="zl-bg-transparent" type="text"></div>
+                                            <div class="layout__item form-field__suffix"><button class="button button--basic"><span class="icon iconfont icon-search"></span></button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- form-group -->
+                            </form>
+                        </div>
+        				<div class="layout__item">
+                            <a class="button button--basic"><span class="icon icon-img-sprite icon-qq-white"></span></a>
+                        </div>
+        				<div class="layout__item">
+                            <a class="button button--basic"><span class="icon icon-img-sprite icon-weibo-white"></span></a>
+                        </div>
+                        <div class="layout__item">
+                            <a class="button button--basic"><span>登录</span></a>
+                        </div>
+                        <div class="layout__item">
+                            <a class="button button--basic"><span>注册</span></a>
+                        </div>
         			</div>
         		</div>
         	</div>
+        </div>
+        <div class="layout flex polyfill-flex horizontal vertical-center test-topbar">
+            <div class="layout__item" current-polyfill-layout="left">
+                <div class="layout inline-block-center">
+                    <div class="layout__item">
+                        <div class="brand global-brand"></div>
+                    </div>
+                    <div class="layout__item">
+                        <ul class="zl-nav topnav">
+                            <div class="layout full-height inline-block-center">
+                                <li class="layout__item zl-nav__item">
+                                    <a class="zl-nav__link" href="#">
+                                        <div class="layout inline-block-center">
+                                        	<div class="layout__item"><span class="icon icon-img-sprite icon-pc-white"></span></div>
+                                        	<div class="layout__item"><span>电脑</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="layout__item zl-nav__item">
+                                    <a class="zl-nav__link" href="#">
+                                        <div class="layout inline-block-center">
+                                        	<div class="layout__item"><span class="icon icon-img-sprite icon-tv-white"></span></div>
+                                        	<div class="layout__item"><span>电视</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layout__item" current-polyfill-layout="right">
+                <div class="zl-utility-float-right zl-color-white">
+                    <div class="layout inline-block-center">
+                        <div class="layout__item">
+                            <a href="" class="zl-link zl-color-white">
+                                <div class="layout inline-block-center">
+                                	<div class="layout__item"><span class="icon icon-img-sprite icon-download-link-white"></span></div>
+                                	<div class="layout__item"><span>下载</span></div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="layout__item">
+                            <form action="" class="form topbar__form">
+                                <div class="form-group">
+                                    <div class="form-field form-field--basic shape-circle--5px zl-border-color-white search-field">
+                                    	<div class="layout inline-block-center">
+                                    		<div class="layout__item form-field__prefix"></div>
+                                    		<div class="layout__item form-field__content"><input class="zl-bg-transparent" type="text"></div>
+                                    		<div class="layout__item form-field__suffix"><button class="button button--basic"><span class="icon iconfont icon-search"></span></button></div>
+                                    	</div>
+                                    </div> 
+                                </div>
+                                <!-- form-group --></form>
+                        </div>
+                        <div class="layout__item">
+                            <div class="button button--basic"><span class="icon icon-img-sprite icon-qq-white"></span></div>
+                        </div>
+                        <div class="layout__item">
+                            <div class="button button--basic"><span class="icon icon-img-sprite icon-weibo-white"></span></div>
+                        </div>
+                        <div class="layout__item">
+                            <a class="button button--basic"><span>登录</span></a>
+                        </div>
+                        <div class="layout__item">
+                            <a class="button button--basic"><span>注册</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
     <main>

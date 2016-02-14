@@ -1,20 +1,20 @@
-//@font-face {
-//    font-family: 'iconfont';
-//    src: url('//at.alicdn.com/t/font_1453177511_02227.eot'); /* IE9*/
-//    src: url('//at.alicdn.com/t/font_1453177511_02227.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-//    url('//at.alicdn.com/t/font_1453177511_02227.woff') format('woff'), /* chrome、firefox */
-//    url('//at.alicdn.com/t/font_1453177511_02227.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-//    url('//at.alicdn.com/t/font_1453177511_02227.svg#iconfont') format('svg'); /* iOS 4.1- */
-//}
-
 @font-face {
     font-family: 'iconfont';
-    src: url('../static/icons/iconfont.eot'); /* IE9*/
-    src: url('../static/icons/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../static/icons/iconfont.woff') format('woff'), /* chrome、firefox */
-    url('../static/icons/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-    url('../static/icons/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+    src: url('//at.alicdn.com/t/font_1455338545_3349938.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1455338545_3349938.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1455338545_3349938.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1455338545_3349938.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1455338545_3349938.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
+
+//@font-face {
+//    font-family: 'iconfont';
+//    src: url('../static/icons/iconfont.eot'); /* IE9*/
+//    src: url('../static/icons/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//    url('../static/icons/iconfont.woff') format('woff'), /* chrome、firefox */
+//    url('../static/icons/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+//    url('../static/icons/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+//}
 
 .icon.iconfont {
     font-family: iconfont, serif;
@@ -24,58 +24,28 @@ $fa-css-prefix: "icon";
 
 $iconfont: (
         "vars": (
-                "bule-tooth": "\e600",
-                "moon": "\e601",
-                "fastforward": "\e602",
-                "plane": "\e603",
-                "add": "\e604",
-                "drag": "\e605",
-                "more": "\e606",
-                "rewind": "\e607",
-                "search": "\e608",
-                "star": "\e609",
-                "world": "\e60a",
-                "lock": "\e60b",
-                "list": "\e60c",
-                "volume-off": "\e60d",
-                "share-arrow": "\e60e",
-                "airplay": "\e60f",
-                "close": "\e610",
-                "glass": "\e611",
-                "read": "\e612",
-                "add-square": "\e613",
-                "pause": "\e614",
-                "wifi": "\e615",
-                "user": "\e616",
-                "back": "\e617",
-                "close-circle": "\e618",
-                "location": "\e619",
-                "share": "\e61a",
-                "volume-up": "\e61b",
-                "right": "\e61c",
-                "circle": "\e61d",
-                "at": "\e623",
-                "album": "\e620",
-                "cloud": "\e622",
-                "like": "\e61f",
-                "timer": "\e621",
-                "radio-waves": "\e624",
-                "alarm": "\e61e",
-                "photo": "\e625",
-                "time": "\e626",
-                "music": "\e627",
-                "star-o": "\e628",
-                "arrow-left": "\e629",
-                "arrow-right": "\e62a",
-                "arrow-top": "\e62c",
-                "arrow-down": "\e62b",
-                "email": "\e62d",
-                "male": "\e62e",
-                "hamburger": "\e62f",
-                "playhandle": "\e630",
-                "download": "\e631",
-                "crown": "\e632",
-                "ranking": "\e633"
+                "email": "\e600",
+                "close": "\e601",
+                "check-circle": "\e602",
+                "location": "\e603",
+                "plus": "\e604",
+                "weather-halfmoon": "\e605",
+                "message": "\e606",
+                "user": "\e607",
+                "vip": "\e608",
+                "user-group": "\e609",
+                "date": "\e60d",
+                "concat": "\e60a",
+                "menu": "\e60c",
+                "office": "\e60f",
+                "talk": "\e60e",
+                "activity": "\e60b",
+                "document": "\e610",
+                "brand": "\e611",
+                "star": "\e612",
+                "phone": "\e613",
+                "remove": "\e614",
+                "search": "\e615"
         )
 ) !global;
 
@@ -83,11 +53,55 @@ $iconfont: (
     @return map-deep-get($iconfont, "vars", $name);
 }
 
-@mixin use-iconfont-iosicons() {
+@mixin use-iconfont-pcicons() {
     $icons: map-deep-get($iconfont, "vars");
     .iconfont {
         @each $iconname, $iconunicode in $icons {
             &.#{$fa-css-prefix}-#{$iconname}:before { content: $iconunicode; }
         }
+    }
+}
+
+
+// 图片icon
+@mixin com-zhilizhili-site-use-img-icon() {
+    .icon.icon-img-sprite {
+        @include com-zhilizhili-site-boilderplate-background-image-set("sprite");
+    }
+
+    .icon-pc-white {
+        @include sprite($sprite-pc-white);
+    }
+
+    .icon-tv-white {
+        @include sprite($sprite-tv-white);
+    }
+
+    .icon-download-link-white {
+        @include sprite($sprite-download-link-white);
+    }
+
+    .icon.icon-search-white {
+        @include sprite($sprite-search-white)
+    }
+
+    .icon.icon-search-grey {
+        @include sprite($sprite-search-grey)
+    }
+
+    .icon.icon-qq-white {
+        @include sprite($sprite-qq-white);
+    }
+
+    .icon.icon-qq-grey {
+        @include sprite($sprite-qq-grey);
+    }
+
+    .icon.icon-weibo-white {
+        @include sprite($sprite-weibo-white);
+    }
+
+    .icon.icon-weibo-grey {
+        @include sprite($sprite-weibo-grey);
     }
 }

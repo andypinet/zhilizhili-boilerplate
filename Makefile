@@ -19,3 +19,9 @@ update:
 
 pc-sassdoc:
 	cd resources/assets/pc && ../../../node_modules/sassdoc/bin/sassdoc src "sass"
+
+framework-zhilizhili-ui-framework-sasdoc:
+	cd node_modules/zhilizhili-ui/framework && ../../sassdoc/bin/sassdoc src "sass"
+
+doc:
+	jsdoc gulpfile.js -d gulpfiledoc

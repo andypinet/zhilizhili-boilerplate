@@ -13,3 +13,4 @@ _ide_helper.php
 platforms/android
 plugins/cordova-*
 **/sassdoc/*
+gulpfiledoc/

@@ -1,7 +1,6 @@
-@mixin com-zhilizhili-pc-layout-current-polyfill($selctor, $width, $leftwidth, $rightwidth, $mainstyle: (), $leftstyle: (), $rightstyle: ()) {
+@mixin com-zhilizhili-pc-layout-current-polyfill($selctor, $leftwidth, $rightwidth, $mainstyle: (), $leftstyle: (), $rightstyle: ()) {
     .layout.polyfill-flex {
         &#{$selctor} {
-            width: $width !important;
             > .layout__item[current-polyfill-layout=left] {
                 width: $leftwidth;
                 @include com-zhilizhili-utils-map-to-style($leftstyle);
@@ -16,18 +15,44 @@
     }
 }
 
+@mixin com-zhilizhili-site-pc-boilerplate-example-common-index-header() {
+    header {
+        background-color: get-custom-color("grey", "600");
+        background-color: rgba(0,0,0,0.4);
+        font-size: 12px;
+    }
+    @include use-com-zhilizhili-nav-init(".topnav") {
+        height: 50px;
+        @include com-zhilizhili-nav-use-nav-link() {
+            @extend .#{$ns}-link-interface;
+            @extend .#{$ns}-color-white;
+        }
+    }
+    @include com-zhilizhili-pc-layout-current-polyfill(".topbar", 40%, 60%, (), (), ()) {
+        @include com-zhilizhili-zhilizhiliui-elements-form-init(".topbar__form") {
+            @include com-zhilizhili-zhilizhiliui-elements-form-field-init(".search-field"){
+                padding: 3px;
+                padding-left: 0;
+                input {
+                    width: 147px;
+                }
+            }
+        }
+    };
+    @include com-zhilizhili-pc-layout-current-polyfill(".test-topbar", 40%, 60%, (), (), ()) {
+        width: 1143px;
+        margin: 0 auto;
+    };
+}
+
 @mixin com-zhilizhili-site-pc-boilerplate-example-common-index() {
     $pageselector: unquote("[page=commonIndex]");
     @include app($appselector) {
         #{$pageselector} {
-            header {
-                background-color: rgba(0,0,0,0.4);
-            }
-            @include com-zhilizhili-pc-layout-current-polyfill(".topbar", 100%, 40%, 60%, (), (), ()) {
-            };
+            @include com-zhilizhili-site-pc-boilerplate-example-common-index-header();
             @include com-zhilizhili-responsive-container-set(1351px, (
-                "header": (
-                    width: 960px
+                ".topbar": (
+                    width: 1143px
                 ),
                 "main": (
                     width: 960px
@@ -36,7 +61,7 @@
                     width: 960px
                 )
             ),(
-                "header": (
+                ".topbar": (
                     width: 1143px
                 ),
                 "main": (

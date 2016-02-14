@@ -314,9 +314,15 @@ $material-colors: (
 ) !global;
 
 
-$custom-color: map-extend($material-colors, ()) !global;
+$custom-color: map-extend($material-colors, (), true) !global;
 
 $custom-color: map-extend($custom-color, (
+        "white": (
+                "600": #ffffff
+        ),
+        "black": (
+                "600": #000000
+        ),
         "pink": (
                 "200": #FBC7D4,
                 "300": #FFBED3,
@@ -345,7 +351,7 @@ $custom-color: map-extend($custom-color, (
                 "800": #424242,
                 "900": #212121
         )
-)) !global;
+), true) !global;
 
 $custom-color-types: map-keys($custom-color) !global;
 
@@ -355,6 +361,18 @@ $custom-color-types: map-keys($custom-color) !global;
 
 %color-white {
         color: #ffffff;
+}
+
+.#{$ns}-color-white {
+    color: #ffffff;
+}
+
+.#{$ns}-color-black {
+    color: #000000;
+}
+
+.#{$ns}-bg-transparent {
+    background-color: transparent;
 }
 
 @mixin initlize-color-gen($name, $prop, $color, $level) {
@@ -377,6 +395,23 @@ $custom-color-types: map-keys($custom-color) !global;
                         color: get-custom-color($value);
                 }
         }
+}
+
+@mixin initlize-color-class-with-ns($custom-color-types) {
+    @each $value in $custom-color-types {
+        .#{$ns}-color-#{$value} {
+            color: get-custom-color($value);
+        }
+    }
+}
+
+
+@mixin initlize-border-color-class-with-ns($custom-color-types) {
+    @each $value in $custom-color-types {
+        .#{$ns}-border-color-#{$value} {
+            border-color: get-custom-color($value);
+        }
+    }
 }
 
 @mixin initlize-bg-class($custom-color-types) {

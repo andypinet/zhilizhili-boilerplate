@@ -2,6 +2,8 @@
 @import "../../../../node_modules/sassyjson/stylesheets/SassyJSON";
 @import "../../../../node_modules/scss-zhilizhili-mei/stylesheets/mei";
 
+@import "../../../../node_modules/zhilizhili-ui/settings/sass/namespace";
+
 @import "../../../../node_modules/zhilizhili-ui/framework/sass/utils/full-parent";
 @import "../../../../node_modules/zhilizhili-ui/framework/sass/utils/size";
 @import "../../../../node_modules/zhilizhili-ui/framework/sass/utils/bem";
@@ -37,3 +39,11 @@
 @import "../../../../node_modules/sass-mediaqueries/media-queries";
 @import "../../../../node_modules/zhilizhili-ui/framework/sass/common/device";
 @import "../../../../node_modules/zhilizhili-ui-plus/elements/pc/sass/layout";
+
+// 设置background
+@import "../../../../node_modules/zhilizhili-ui/framework/sass/utils/background";
+
+// global element
+@import "../../../../node_modules/zhilizhili-ui/elements/utility/sass/float";
+
+@import "../../../../node_modules/zhilizhili-ui/elements/link/sass/link";
