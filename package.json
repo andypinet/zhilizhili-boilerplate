@@ -70,9 +70,9 @@
     "vue-router": "^0.7.7",
     "webcomponents.js": "^0.7.20",
     "whatwg-fetch": "^0.10.1",
-    "zhilizhili-ui": "^1.2.36",
-    "zhilizhili-ui-plus": "^0.3.45",
-    "zhilizhili-ui-touch": "^0.2.21",
+    "zhilizhili-ui": "^1.2.37",
+    "zhilizhili-ui-plus": "^0.3.46",
+    "zhilizhili-ui-touch": "^0.2.22",
     "zone.js": "0.5.10"
   }
 }

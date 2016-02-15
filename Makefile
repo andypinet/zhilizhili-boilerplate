@@ -25,3 +25,12 @@ framework-zhilizhili-ui-framework-sasdoc:
 
 doc:
 	jsdoc gulpfile.js -d gulpfiledoc
+
+publish-zhilizhili-ui:
+	cd node_modules/zhilizhili-ui && npm publish
+
+publish-zhilizhili-ui-plus:
+	cd node_modules/zhilizhili-ui-plus && npm publish
+
+publish-zhilizhili-ui-touch:
+	cd node_modules/zhilizhili-ui-touch && npm publish

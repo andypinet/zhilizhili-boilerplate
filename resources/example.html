@@ -52,7 +52,7 @@
 <body>
 <div class="full-parent" id="app" ng-app="exampleApp">
     <div class="full-parent">
-        <div class="layout full-parent flex polyfill-flex horizontal">
+        <div class="layout full-parent">
             <!--<div class="layout__item">-->
                 <!--<ul>-->
                     <!--<li><a href="#!/progress">progress</a></li>-->
@@ -63,8 +63,8 @@
                     <!--<li><a href="#!/fff?a=1&nn=4&dfg=676">fff</a></li>-->
                 <!--</ul>-->
             <!--</div>-->
-            <div class="layout__item full-height utility-pos-relative flex-1">
-                <div class="layout full-parent utility-pos-absolute">
+            <div class="layout__item full-height utility-pos-relative">
+                <div class="layout full-parent utility-pos-absolute" style="position: absolute;">
                     <div class="layout full-parent stack-view scenes">
                         <div id="scene1" class="layout__item stack-view__item scene" router="/progress">
                             <div ng-controller="someController">
@@ -100,8 +100,18 @@
 <!--[if IE 8]>
 <script type="text/javascript">
     window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
-    supportvwvh("supportVwVh", 'meta[name="support-vw-vh"]');
-    supportvwvh("supportVwVhForExample", 'meta[name="support-vw-vh-for-example"]');
+    supportvwvh("supportVwVh", 'meta[name="support-vw-vh"]', function() {
+    });
+    supportvwvh("supportVwVhForExample", 'meta[name="support-vw-vh-for-example"]', function(csspropkey, cssprop, ret, cssdelcarekey) {
+        if (cssdelcarekey == "body [ng-app=exampleApp] [page=commonIndex] .polyfill-grid-container.row-2 .layout.ui-collection.polyfill-grid > .layout__item") {
+            if (csspropkey == "margin-left") {
+                var gutter = parseFloat(ret.replace("px", ""));
+                SubnavShim("#topnav__subnav", ".zl-nav__item", gutter);
+                SubnavForInline("#topbar__subnav2", ".zl-nav__item", gutter);
+                SubnavForInline("#topbar__subnav3", ".zl-nav__item", gutter);
+            }
+        }
+    });
     supportcalc("supportCalc", 'meta[name="support-calc"]');
     supportcalc("supportCalcForExample", 'meta[name="support-calc-for-example"]');
 </script>

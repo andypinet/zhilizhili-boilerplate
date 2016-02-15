@@ -422,6 +422,13 @@ $custom-color-types: map-keys($custom-color) !global;
         }
 }
 
+@mixin initlize-bg-class-with-ns($custom-color-types) {
+    @each $value in $custom-color-types {
+        .#{$ns}-bg-#{$value} {
+            background-color: get-custom-color($value) !important;
+        }
+    }
+}
 
 @mixin set-bg-and-color-to-element($background-color, $color: #ffffff) {
         @if $color == #ffffff {

@@ -1,28 +1,70 @@
 @mixin com-zhilizhili-sites-bolierplate-examples-bilibili-grid() {	
     [page=bilibili-grid] {
-        @include com-zhilizhili-pc-layout-grid-shim-init(unquote(".polyfill-grid-container"), unquote(".polyfill-grid")) {
+        @include com-zhilizhili-pc-layout-grid-shim-init(
+            unquote(".polyfill-grid-container.row-4"), unquote(".polyfill-grid"))
+        {
         	> .layout__item {
         		background-color: get-custom-color("blue", "600");
         	}
-        }   
+        }
+        @include com-zhilizhili-pc-layout-grid-shim-init(
+        	unquote(".polyfill-grid-container.row-3"), unquote(".polyfill-grid"))
+        {
+            > .layout__item {
+                background-color: get-custom-color("blue", "600");
+            }
+        }
+        @include com-zhilizhili-pc-layout-grid-shim-init(
+        	unquote(".polyfill-grid-container.row-2"), unquote(".polyfill-grid")) 
+        {
+            > .layout__item {
+                background-color: get-custom-color("blue", "600");
+            }
+        }
     }
 }
 
 @mixin com-zhilizhili-sites-bolierplate-examples-bilibili-grid-polyfill() {	
     @include com-zhilizhili-pc-layout-grid-shim-polyfill(
-    	unquote("[page=bilibili-grid]"), unquote(".polyfill-grid-container"), unquote(".polyfill-grid"), 
+        unquote(".polyfill-grid-container.row-4"), unquote(".polyfill-grid"),
     	4,
     	10,
     	(
 			width: 1230 #vw
     	),
     	(
-            width: 1240 #vw,
-            margin-left: -10 #vw
+            width: 1240 #vw
 		),
 		(
-            width: 300 #vw,
-            margin-left: 10 #vw
+            width: 300 #vw
 		)
-    ) {};  
+    ) {};
+    @include com-zhilizhili-pc-layout-grid-shim-polyfill(
+    	unquote(".polyfill-grid-container.row-3"), unquote(".polyfill-grid"),
+    	3,
+    	10,
+    	(
+    		width: 920  #vw
+    	),
+    	(
+            width: 930 #vw
+    	),
+    	(
+            width: 300 #vw
+    	)
+    ) {};
+    @include com-zhilizhili-pc-layout-grid-shim-polyfill(
+    	unquote(".polyfill-grid-container.row-2"), unquote(".polyfill-grid"), 
+    	2,
+    	10,
+    	(
+    		width: 610 #vw
+    	),
+    	(
+            width: 620 #vw
+    	),
+    	(
+            width: 300 #vw
+    	)
+    ) {};    
 }

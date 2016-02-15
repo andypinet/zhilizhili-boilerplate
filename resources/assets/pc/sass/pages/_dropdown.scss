@@ -1,0 +1,90 @@
+@mixin com-zhilizhili-zhilizhiliuiplus-common-pos-horizontal-set($selfwidth, $fallbackwidth, $parsel, $mode: "in center") {
+    $swidth: $selfwidth / 2;
+    $sfallbackwidth: ($fallbackwidth / 2) + 0px;
+    $hfallbackwidth: $fallbackwidth + 0px;
+    @if $mode == "in center" {
+        @include com-zhilizhili-calc-easy-set((
+            left: #{50%} - #{$sfallbackwidth},
+            parsel: unquote($parsel)
+        ));
+        left: calc(#{50%} - #{$swidth});
+    } @else if $mode == "in left" {
+        @include com-zhilizhili-calc-easy-set((
+            left: #{100%} - #{$hfallbackwidth},
+            parsel: unquote($parsel)
+        ));
+        left: calc(#{100%} - #{$selfwidth});
+    } @else if $mode == "out left" {
+        @include com-zhilizhili-calc-easy-set((
+            left: #{0%} - #{$hfallbackwidth},
+            parsel: unquote($parsel)
+        ));
+        left: calc(#{-$selfwidth});
+    } @else if $mode == "out right" {
+        @include com-zhilizhili-calc-easy-set((
+            left: #{100%} - #{0px},
+            parsel: unquote($parsel)
+        ));
+        left: calc(#{100%});
+    } @else if $mode == "in right" {
+    }
+    @content;
+    //@if str-index($mode, "top") {
+    //    transform: translateY(-100%);
+    //    @content;
+    //}
+}
+
+@mixin com-zhilizhili-zhilizhiliuiplus-common-pos-vertical-set($selfheight, $fallbackheight, $parsel, $mode: "in center") {
+    $hselfheight: $selfheight + 0px;
+    $sfallbackwidth: ($fallbackheight / 2) + 0px;
+    $hfallbackwidth: $fallbackheight + 0px;
+    @if $mode == "in up" {
+        transform: translateY(-100%);
+        top: $hselfheight;
+        @include com-zhilizhili-polyfill-ie8() {
+            top: -$hfallbackwidth + $selfheight;
+        }
+    } @else if $mode == "out up" {
+        @include com-zhilizhili-polyfill-ie8() {
+            top: -$hfallbackwidth;
+        }
+        transform: translateY(-100%);
+    } @else if $mode == "in center" {
+        transform: translateY(-50%);
+        top: $hselfheight / 2;
+        @include com-zhilizhili-polyfill-ie8() {
+            top: (-$hfallbackwidth + $selfheight) / 2;
+        }
+    } @else if $mode == "out down" {
+    } @else if $mode == "in down" {
+    }
+    @content;
+}
+
+@mixin com-zhilizhili-site-components-dropdown() {
+    [page=dropdown] {
+        .article {
+            @include register-hook("#{&}");
+        }
+        .popover {
+            @include register-hook("#{&}");
+        }
+        .dropdown-1 {
+            height: 35px;
+        }
+    }
+}
+
+@mixin com-zhilizhili-site-components-dropdown-polyfill() {
+    @include use-hook("[page=dropdown] .article") {
+        @include polyfill-advance-set((
+            margin-left: 450 #vw
+        ));
+    }
+    @include use-hook("[page=dropdown] .popover") {
+        height: 90px;
+        @include com-zhilizhili-zhilizhiliuiplus-common-pos-horizontal-set(12vw, 163, ".dropdown-1", "out right");
+        @include com-zhilizhili-zhilizhiliuiplus-common-pos-vertical-set(35, 90, ".dropdown-1", "out down");
+    }
+}

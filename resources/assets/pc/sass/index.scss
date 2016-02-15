@@ -9,6 +9,10 @@
 // icon
 @import "icon";
 
+@import "animation";
+
+@import "project";
+
 // shape
 @import "../../../../node_modules/zhilizhili-ui-plus/framework/sass/component/shape";
 
@@ -56,6 +60,16 @@
 @include reset-body-marigin();
 @include full-screen();
 @include use-full-parent();
+
+@include com-zhilizhili-use-utility-float();
+@include com-zhilizhili-zhilizhiliui-elements-utility-border();
+@include com-zhilizhili-zhilizhiliui-elements-utility-display();
+
+@include com-zhilizhili-use-link-default();
+
+// 使用图片icon
+@include com-zhilizhili-site-use-img-icon();
+
 
 // layout
 @include use-layout-inline-block-center();
@@ -110,6 +124,9 @@
 // set page style
 @include initlize-bg-class($custom-color-types);
 @include initlize-color-class($custom-color-types);
+@include initlize-color-class-with-ns($custom-color-types);
+@include initlize-border-color-class-with-ns($custom-color-types);
+@include initlize-bg-class-with-ns($custom-color-types);
 @include initlize-color-gen(".bg-red-yellow", "background-color", "yellow", "700");
 @include initlize-color-gen(".bg-grey-200", "background-color", "grey", "200");
 @include initlize-color-gen(".bg-grey-300", "background-color", "grey", "300");
@@ -170,6 +187,7 @@ html.ie8 {
 @import "pages/image";
 @import "pages/grid";
 @import "examples/bilibili-grid";
+@import "pages/dropdown";
 
 $desgin-device-width: 1920 !global;
 $desgin-device-height: 1200 !global;
@@ -198,14 +216,46 @@ body {
 @include com-zhilizhili-site-components-image();
 @include com-zhilizhili-site-components-grid();
 @include com-zhilizhili-sites-bolierplate-examples-bilibili-grid();
+@include com-zhilizhili-site-components-dropdown();
 
 @mixin polyfill() {
+    @include com-bilibili-gen-padding-polyfill();
+    @include com-bilibili-gen-padding-polyfill(500, 25);
+    @include com-bilibili-gen-padding-polyfill(400, 20);
+    @include com-bilibili-gen-padding-polyfill(300, 15);
+    @include com-bilibili-gen-padding-polyfill(200, 10);
+    @include com-bilibili-gen-padding-polyfill(100, 5);
+    @include com-bilibili-gen-margin-polyfill();
+    @include com-bilibili-gen-margin-polyfill(500, 25);
+    @include com-bilibili-gen-margin-polyfill(400, 20);
+    @include com-bilibili-gen-margin-polyfill(300, 15);
+    @include com-bilibili-gen-margin-polyfill(200, 10);
+    @include com-bilibili-gen-margin-polyfill(100, 5);
+    @include com-zhilizhili-material-design-length-gen(height, 100, 10);
+    @include com-zhilizhili-material-design-length-gen(height, 200, 20);
+    @include com-zhilizhili-material-design-length-gen(height, 300, 30);
+    @include com-zhilizhili-material-design-length-gen(height, 400, 40);
+    @include com-zhilizhili-material-design-length-gen(height, 500, 50);
+    @for $i from 1 through 25  {
+        $index: $i * 4;
+        .#{$ns}-length-#{$index}vw {
+            @include polyfill-advance-set((
+                width: com-zhilizhili-transform-to-pc-real-vw($index) #vw
+            ));
+        }
+    }
+    .width-100-vw {
+        @include polyfill-advance-set((
+            width: $desgin-device-width #vw
+        ))
+    }
     @include com-zhilizhili-site-components-layout-polyfill();
     @include com-zhilizhili-site-components-button-polyfill();
     @include com-zhilizhili-site-components-label-polyfill();
     @include com-zhilizhili-site-components-image-polyfill();
     @include com-zhilizhili-site-components-grid-polyfill();
     @include com-zhilizhili-sites-bolierplate-examples-bilibili-grid-polyfill();
+    @include com-zhilizhili-site-components-dropdown-polyfill();
 }
 
 @include polyfill();

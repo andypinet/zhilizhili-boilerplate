@@ -11,6 +11,8 @@ $namespace: "zl";
 // icon
 @import "icon";
 
+@import "animation";
+
 @import "project";
 
 // shape
@@ -69,6 +71,8 @@ $namespace: "zl";
 @include use-full-parent();
 
 @include com-zhilizhili-use-utility-float();
+@include com-zhilizhili-zhilizhiliui-elements-utility-border();
+@include com-zhilizhili-zhilizhiliui-elements-utility-display();
 
 @include com-zhilizhili-use-link-default();
 
@@ -113,6 +117,7 @@ $namespace: "zl";
 @include initlize-color-interface($custom-color-types);
 @include initlize-color-class-with-ns($custom-color-types);
 @include initlize-border-color-class-with-ns($custom-color-types);
+@include initlize-bg-class-with-ns($custom-color-types);
 
 // page mixins
 
@@ -193,17 +198,11 @@ html.ie8 {
     }
 }
 
-
 $desgin-device-width: 1920 !global;
 $desgin-device-height: 1200 !global;
 $adaptDeviceWidth: $desgin-device-width !global;
 
 @import "../../example/sass/pages/common-index";
-
-
-@function com-zhilizhili-transform-to-pc-real-vw($value) {
-    @return $desgin-device-width * ($value / 100);
-}
 
 $appselector: unquote("[ng-app=exampleApp]") !global;
 body {
@@ -225,36 +224,6 @@ body {
 @include use-iconfont-pcicons();
 
 @mixin polyfill() {
-    @include com-bilibili-gen-padding-polyfill();
-    @include com-bilibili-gen-padding-polyfill(500, 25);
-    @include com-bilibili-gen-padding-polyfill(400, 20);
-    @include com-bilibili-gen-padding-polyfill(300, 15);
-    @include com-bilibili-gen-padding-polyfill(200, 10);
-    @include com-bilibili-gen-padding-polyfill(100, 5);
-    @include com-bilibili-gen-margin-polyfill();
-    @include com-bilibili-gen-margin-polyfill(500, 25);
-    @include com-bilibili-gen-margin-polyfill(400, 20);
-    @include com-bilibili-gen-margin-polyfill(300, 15);
-    @include com-bilibili-gen-margin-polyfill(200, 10);
-    @include com-bilibili-gen-margin-polyfill(100, 5);
-    @include com-zhilizhili-material-design-length-gen(height, 100, 10);
-    @include com-zhilizhili-material-design-length-gen(height, 200, 20);
-    @include com-zhilizhili-material-design-length-gen(height, 300, 30);
-    @include com-zhilizhili-material-design-length-gen(height, 400, 40);
-    @include com-zhilizhili-material-design-length-gen(height, 500, 50);
-    @for $i from 1 through 25  {
-        $index: $i * 4;
-        .#{$namespace}-length-#{$index}vw {
-            @include polyfill-advance-set((
-                width: com-zhilizhili-transform-to-pc-real-vw($index) #vw
-            ));
-        }    
-    }
-    .width-100-vw {
-        @include polyfill-advance-set((
-            width: $desgin-device-width #vw
-        ))
-    }
     @include com-zhilizhili-site-examples-exp-polyfill();
     @include com-zhilizhili-site-pc-boilerplate-example-common-index-polyfill();
 }

@@ -1,5 +1,9 @@
 @import '../../example/sass/sprite'; // the generated style file (sprite.scss)
 
+@function com-zhilizhili-transform-to-pc-real-vw($value) {
+    @return $desgin-device-width * ($value / 100);
+}
+
 /// @access public
 /// @author lbc
 /// @group com.zhilizhili.boilderplate

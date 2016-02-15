@@ -41,7 +41,6 @@
     <script type="text/javascript">
         window.documentElementclientWidthWithScrollBar = document.documentElement.clientWidth;
         window.documentElementCurrentclientWidthWithScrollBar = window.documentElementclientWidthWithScrollBar;
-        console.log(window.documentElementclientWidthWithScrollBar);
     </script>
 </head>
 <body>
@@ -97,7 +96,9 @@
                         <div id="scene9" class="layout__item stack-view__item scene show" router="/bilibili/grid">
                             @@include("./examples/bilibili-grid.html")
                         </div>
-                        <div id="scene10" class="layout__item stack-view__item scene">10</div>
+                        <div id="scene10" class="layout__item stack-view__item scene show">
+                            @@include("./pages/dropdown.html")
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,22 +109,29 @@
 <!--[if IE 8]>
 <script type="text/javascript">
     window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
-    supportvwvh("supportVwVh");
-    supportcalc("supportCalc");
+    supportvwvh("supportVwVh", 'meta[name="support-vw-vh"]', function(){});
+    supportcalc("supportCalc", 'meta[name="support-calc"]');
 </script>
 <![endif]-->
 
-<script>
-    window.scrollBarWidth = window.documentElementclientWidthWithScrollBar - document.documentElement.clientWidth;
-    console.log(window.scrollBarWidth);
-    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    console.log(width);
-</script>
 <script type="text/javascript">
     angular.module('someApp', [])
             .controller('someController', function($scope) {
                 $scope.message = 'This works in IE8 and all good browsers';
             });
+</script>
+<script>
+    window.addEventListener("message", receiveMessage, false);
+    
+    function receiveMessage(event)
+    {
+        var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+        console.log(origin);
+        if (origin !== "http://192.168.0.100:3002") {
+            return false;
+        }
+        console.log(event.data);
+    }
 </script>
 </body>
 </html>

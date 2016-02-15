@@ -1,15 +1,35 @@
-@mixin com-zhilizhili-pc-layout-current-polyfill($selctor, $leftwidth, $rightwidth, $mainstyle: (), $leftstyle: (), $rightstyle: ()) {
+$com-zhilizhili-pc-layout-current-polyfill: () !global;
+
+@mixin com-zhilizhili-pc-layout-current-polyfill($selector, $leftwidth, $centerwidth, $rightwidth,
+                                                $mainstyle: (), $leftstyle: (), $centerstyle:(), $rightstyle: ()) {
     .layout.polyfill-flex {
-        &#{$selctor} {
+        $com-zhilizhili-pc-layout-current-polyfill: map-deep-set($com-zhilizhili-pc-layout-current-polyfill, $selector, ()) !global;
+        &#{$selector} {
             > .layout__item[current-polyfill-layout=left] {
+                $com-zhilizhili-pc-layout-current-polyfill: map-deep-set($com-zhilizhili-pc-layout-current-polyfill, $selector, "left", #{&}) !global;
                 width: $leftwidth;
                 @include com-zhilizhili-utils-map-to-style($leftstyle);
             }
+            > .layout__item[current-polyfill-layout=center] {
+                $com-zhilizhili-pc-layout-current-polyfill: map-deep-set($com-zhilizhili-pc-layout-current-polyfill, $selector, "center", #{&}) !global;
+                width: $centerwidth;
+                @include com-zhilizhili-utils-map-to-style($centerstyle);
+            }
             > .layout__item[current-polyfill-layout=right] {
+                $com-zhilizhili-pc-layout-current-polyfill: map-deep-set($com-zhilizhili-pc-layout-current-polyfill, $selector, "right", #{&}) !global;
                 width: $rightwidth;
                 @include com-zhilizhili-utils-map-to-style($rightstyle);
             }
             @include com-zhilizhili-utils-map-to-style($mainstyle);
+            @content;
+        }
+    }
+}
+
+@mixin com-zhilizhili-pc-layout-current-polyfill-set($selector, $section) {
+    $sel: map-deep-get($com-zhilizhili-pc-layout-current-polyfill, unquote($selector), $section);
+    @at-root {
+        #{$sel} {
             @content;
         }
     }
@@ -23,26 +43,142 @@
     }
     @include use-com-zhilizhili-nav-init(".topnav") {
         height: 50px;
-        @include com-zhilizhili-nav-use-nav-link() {
-            @extend .#{$ns}-link-interface;
-            @extend .#{$ns}-color-white;
-        }
-    }
-    @include com-zhilizhili-pc-layout-current-polyfill(".topbar", 40%, 60%, (), (), ()) {
-        @include com-zhilizhili-zhilizhiliui-elements-form-init(".topbar__form") {
-            @include com-zhilizhili-zhilizhiliui-elements-form-field-init(".search-field"){
-                padding: 3px;
-                padding-left: 0;
-                input {
-                    width: 147px;
+        > .layout {
+            @include com-zhilizhili-nav-use-children-nav-link() {
+                @extend .#{$ns}-link-interface;
+                @extend .#{$ns}-color-white;
+                width: 65px;
+                -js-display: flex;
+                display: flex;
+                align-items: center;
+            }
+            @include com-zhilizhili-nav-use-children-nav-item() {
+                &:hover {
+                    background-color: get-custom-color("grey", "500");
+                    .topnav__subnav {
+                        opacity: 1;
+                        z-index: 1;
+                        animation: 1s zoomIn;
+                        animation-fill-mode: both;
+                    }
                 }
             }
         }
+    }
+    @include com-zhilizhili-pc-layout-current-polyfill(".topbar", 40%, 0, 60%, ()) {
+        @include com-zhilizhili-zhilizhiliui-elements-form-init(".topbar__form") {
+            @include com-zhilizhili-zhilizhiliui-elements-form-field-init(".search-field"){
+                padding: 0;
+                border: none;
+                input {
+                    width: 147px;
+                    height: 24px;
+                }
+            }
+        }
+        @include com-zhilizhili-zhilizhiliui-elements-button-init(".search-button") {
+            height: 24px;
+        }
     };
-    @include com-zhilizhili-pc-layout-current-polyfill(".test-topbar", 40%, 60%, (), (), ()) {
-        width: 1143px;
+    @include com-zhilizhili-pc-layout-current-polyfill(".youku-topbar", 20%, 50%, 30%, ()) {
+        width: 1243px;
         margin: 0 auto;
+        @include com-zhilizhili-zhilizhiliui-elements-form-init(".youku-topbar__form") {
+        	@include com-zhilizhili-zhilizhiliui-elements-form-field-init(".youku-search-field") {
+        		padding: 0;
+                border: none;
+                input {
+                    width: 350px;
+                    height: 30px;
+                }
+        	};
+            @include com-zhilizhili-zhilizhiliui-elements-button-init(".youku-search-button") {
+                height: 30px;
+            }
+        }
     };
+    @include com-zhilizhili-pc-layout-current-polyfill-set(".youku-topbar", "center") {
+        text-align: center;
+    }
+    @include com-zhilizhili-pc-layout-current-polyfill-set(".youku-topbar", "right") {
+        @include register-hook("#{&}");
+    }    
+    @include com-zhilizhili-pc-layout-grid-shim-init(
+    	unquote(".polyfill-grid-container.row-2"), unquote(".polyfill-grid"))
+    {
+        > .zl-nav__item {
+            text-align: center;
+            > .zl-nav__link {
+                display: inline-block;
+                margin-left: -10px;
+            }
+            &:hover {
+                background-color: get-custom-color("grey", "500");
+            }
+        }
+    }
+    @include com-zhilizhili-zhilizhiliui-elements-nav-subnav-init(".topnav__subnav") {
+        opacity: 0;
+        z-index: -1;
+        @include register-hook("#{&}");
+    }
+    .popover {
+        @include register-hook("#{&}");
+    }
+}
+
+@mixin com-zhilizhili-site-pc-boilerplate-example-common-index-header-polyfill() {
+    @include com-zhilizhili-pc-layout-grid-shim-polyfill(
+    	unquote(".polyfill-grid-container.row-2"), unquote(".polyfill-grid"),
+    	2,
+    	10,
+    	(
+    		width: 270 #vw
+    	),
+    	(
+            width: 260 #vw,
+            margin-left: 0 #vw,
+            padding-top: 10 #vw,
+            padding-bottom: 10 #vw
+    	),
+    	(
+            width: 120 #vw
+    	)
+    ) {};
+    @include use-hook("body [ng-app=exampleApp] [page=commonIndex] .zl-subnav.topnav__subnav") {
+        @include polyfill-advance-set((
+            width: 270 #vw
+        ));
+        @include com-zhilizhili-polyfill-ie8() {
+            width: 177px;
+        }
+        $calcwidth: vw(135);
+        $licalcwidth: 65px / 2;
+        // + #{$licalcwidth} - #{$calcwidth}
+        //left: calc(((100% - 1143px) / 2 ) + 150px + 1em + #{vw(20)} + #{$licalcwidth} - #{$calcwidth} );
+        left: calc(#{$licalcwidth} - #{$calcwidth});
+    }
+    @include use-hook("body [ng-app=exampleApp] [page=commonIndex] .popover") {
+    }
+    @include use-hook("body [ng-app=exampleApp] [page=commonIndex] .layout.polyfill-flex.youku-topbar > .layout__item[current-polyfill-layout=right]") {
+        >.zl-utility-float-right > .layout > .layout__item {
+            margin-left: 10px;
+        }
+        .youku-topbar__button {
+            padding: 0;
+        }
+        .popover {
+            $width: 340;
+            $halfwidth: $width / 2;
+            @include polyfill-advance-set((
+                width: $width #vw
+            ));
+            left: calc(50% - #{vw($halfwidth)});
+            @include com-zhilizhili-polyfill-ie8() {
+                left: ((57 - 241) / 2) + 0px;
+            }
+        }
+    }
 }
 
 @mixin com-zhilizhili-site-pc-boilerplate-example-common-index() {
@@ -78,4 +214,5 @@
 
 @mixin com-zhilizhili-site-pc-boilerplate-example-common-index-polyfill() {
     $pageselector: unquote("[page=commonIndex]");
+    @include com-zhilizhili-site-pc-boilerplate-example-common-index-header-polyfill();
 }
